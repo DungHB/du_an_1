@@ -15,6 +15,7 @@ public class QuanLyView extends javax.swing.JFrame {
      */
     public QuanLyView() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
