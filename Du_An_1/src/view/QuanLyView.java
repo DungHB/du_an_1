@@ -34,6 +34,7 @@ public class QuanLyView extends javax.swing.JFrame {
         btnQuanLyKhachHang = new javax.swing.JButton();
         btnQuanLyHoaDon = new javax.swing.JButton();
         btnQuanLyNhanVien = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         formQuanLy = new javax.swing.JPanel();
         formQuanLySanPham = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
@@ -234,6 +235,14 @@ public class QuanLyView extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jButton2.setText("Quản Lý Voucher");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel31Layout = new javax.swing.GroupLayout(jPanel31);
         jPanel31.setLayout(jPanel31Layout);
         jPanel31Layout.setHorizontalGroup(
@@ -245,7 +254,8 @@ public class QuanLyView extends javax.swing.JFrame {
                     .addComponent(jPanel32, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnQuanLySanPham, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnQuanLyKhachHang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnQuanLyNhanVien, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnQuanLyNhanVien, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel31Layout.setVerticalGroup(
@@ -261,7 +271,9 @@ public class QuanLyView extends javax.swing.JFrame {
                 .addComponent(btnQuanLyKhachHang, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnQuanLyHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(139, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(82, Short.MAX_VALUE))
         );
 
         formQuanLy.setLayout(new java.awt.CardLayout());
@@ -1470,6 +1482,10 @@ public class QuanLyView extends javax.swing.JFrame {
         formQuanLy.revalidate();
     }//GEN-LAST:event_btnQuanLyNhanVienMouseClicked
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1513,12 +1529,10 @@ public class QuanLyView extends javax.swing.JFrame {
     private javax.swing.JButton btn_nextPage;
     private javax.swing.JButton btn_nextPage1;
     private javax.swing.JButton btn_nextPage2;
-    private javax.swing.JButton btn_nextPageSPCT;
     private javax.swing.JButton btn_nextPageSPCT1;
     private javax.swing.JButton btn_prevPage;
     private javax.swing.JButton btn_prevPage1;
     private javax.swing.JButton btn_prevPage2;
-    private javax.swing.JButton btn_prevPageSPCT;
     private javax.swing.JButton btn_prevPageSPCT1;
     private javax.swing.JButton btn_sua;
     private javax.swing.JButton btn_suaSPCT;
@@ -1530,7 +1544,6 @@ public class QuanLyView extends javax.swing.JFrame {
     private javax.swing.JButton btn_tim;
     private javax.swing.JButton btn_tim1;
     private javax.swing.JButton btn_timKiem;
-    private javax.swing.JButton btn_timKiem1;
     private javax.swing.JButton btn_timKiem2;
     private javax.swing.JButton btn_timSP;
     private javax.swing.JComboBox<String> cbb_chatLieu;
@@ -1549,6 +1562,7 @@ public class QuanLyView extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
@@ -1579,7 +1593,6 @@ public class QuanLyView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
-    private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
@@ -1603,7 +1616,6 @@ public class QuanLyView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel21;
     private javax.swing.JPanel jPanel23;
     private javax.swing.JPanel jPanel24;
-    private javax.swing.JPanel jPanel25;
     private javax.swing.JPanel jPanel26;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel31;
@@ -1620,7 +1632,6 @@ public class QuanLyView extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
@@ -1637,7 +1648,6 @@ public class QuanLyView extends javax.swing.JFrame {
     private javax.swing.JTable tbl_hoaDon;
     private javax.swing.JTable tbl_khachHang;
     private javax.swing.JTable tbl_sanPham;
-    private javax.swing.JTable tbl_sanPhamChiTiet;
     private javax.swing.JTable tbl_sanPhamChiTiet1;
     private javax.swing.JTextField txt_batDau;
     private javax.swing.JTextField txt_diaChi;
@@ -1647,7 +1657,6 @@ public class QuanLyView extends javax.swing.JFrame {
     private javax.swing.JTextField txt_ketThuc;
     private javax.swing.JTextField txt_keyWord;
     private javax.swing.JTextField txt_keyWord1;
-    private javax.swing.JTextField txt_keyWord2;
     private javax.swing.JTextField txt_keyWord3;
     private javax.swing.JTextField txt_keyWordSP;
     private javax.swing.JTextField txt_maHoaDon;
