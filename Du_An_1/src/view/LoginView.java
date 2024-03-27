@@ -4,6 +4,10 @@
  */
 package view;
 
+import Model.Login;
+import Service.LoginService;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Hi Windows 10
@@ -13,6 +17,8 @@ public class LoginView extends javax.swing.JFrame {
     /**
      * Creates new form LoginView
      */
+    LoginService service = new LoginService();
+
     public LoginView() {
         initComponents();
         setLocationRelativeTo(null);
@@ -28,21 +34,21 @@ public class LoginView extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtTenDN = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        txtMK = new javax.swing.JPasswordField();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Barlow Condensed Medium", 0, 36)); // NOI18N
         jLabel1.setText("Đăng Nhập");
 
-        jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField1.setBorder(javax.swing.BorderFactory.createTitledBorder("Tài khoản đăng nhập"));
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtTenDN.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtTenDN.setBorder(javax.swing.BorderFactory.createTitledBorder("Tài khoản đăng nhập"));
+        txtTenDN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtTenDNActionPerformed(evt);
             }
         });
 
@@ -53,10 +59,15 @@ public class LoginView extends javax.swing.JFrame {
             }
         });
 
-        jRadioButton1.setText("Hiển thị mật khẩu");
+        txtMK.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtMK.setBorder(javax.swing.BorderFactory.createTitledBorder("Nhập mật khẩu"));
 
-        jPasswordField1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jPasswordField1.setBorder(javax.swing.BorderFactory.createTitledBorder("Nhập mật khẩu"));
+        jButton2.setText("Cancel");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -65,17 +76,19 @@ public class LoginView extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jRadioButton1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                                .addComponent(jButton1))
-                            .addComponent(jTextField1)
-                            .addComponent(jPasswordField1)))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(68, 68, 68)
-                        .addComponent(jLabel1)))
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(jButton1)
+                            .addGap(18, 18, 18)
+                            .addComponent(jButton2))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGap(21, 21, 21)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtTenDN, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
+                                .addComponent(txtMK)))))
                 .addContainerGap(41, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -84,26 +97,66 @@ public class LoginView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtTenDN, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtMK, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jRadioButton1))
-                .addContainerGap(35, Short.MAX_VALUE))
+                    .addComponent(jButton2))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtTenDNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenDNActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtTenDNActionPerformed
 
+    public boolean chekFrom() {
+        if (txtTenDN.getText().isEmpty() || txtMK.getText().isEmpty()) {
+            return false;
+        }
+        return true;
+    }
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here:       
+        if (chekFrom()) {
+            String usename = txtTenDN.getText().toUpperCase();
+            String password = new String(txtMK.getPassword());
+            Login login = service.selectByND(usename);
+            if (login != null) {
+                int chucvu = login.getId();
+                String chekMK = login.getMatKhau();
+                if (password.equals(chekMK)) {
+                    LoginService.lg = login;
+                    if (chucvu==1) {
+                        QuanLyView ql = new QuanLyView();
+                        ql.setVisible(true);
+                    } else if (chucvu==2) {
+                        NhanVienView nv = new NhanVienView();
+                        nv.setVisible(true);
+                    }                  
+                    this.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(this, " Mật Khẩu không đúng");
+                }
+
+            } else {
+                JOptionPane.showMessageDialog(this, " Tên đăng nhập không đúng");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "vui lonh nhap day du user name va password");
+        }
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -142,9 +195,9 @@ public class LoginView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JPasswordField txtMK;
+    private javax.swing.JTextField txtTenDN;
     // End of variables declaration//GEN-END:variables
 }
