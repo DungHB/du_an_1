@@ -5,8 +5,8 @@
 package view;
 
 import Model.Login;
-import Service.LoginService;
 import javax.swing.JOptionPane;
+import service.Impl.LoginService;
 
 /**
  *
@@ -131,13 +131,13 @@ public class LoginView extends javax.swing.JFrame {
                 String chekMK = login.getMatKhau();
                 if (password.equals(chekMK)) {
                     LoginService.lg = login;
-                    if (chucvu==1) {
+                    if (chucvu == 1) {
                         QuanLyView ql = new QuanLyView();
                         ql.setVisible(true);
-                    } else if (chucvu==2) {
+                    } else if (chucvu == 2) {
                         NhanVienView nv = new NhanVienView();
                         nv.setVisible(true);
-                    }                  
+                    }
                     this.dispose();
                 } else {
                     JOptionPane.showMessageDialog(this, " Mật Khẩu không đúng");
