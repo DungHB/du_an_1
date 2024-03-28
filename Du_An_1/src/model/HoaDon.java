@@ -1,10 +1,12 @@
 package model;
 
+import java.util.Date;
+
 public class HoaDon {
 
     private int idHoaDon;
     private String maHoaDon;
-    private String ngayTao;
+    private Date ngayTao;
     private String ghiChu;
     private int idNhanVien;
     private int idKhachHang;
@@ -16,7 +18,7 @@ public class HoaDon {
     public HoaDon() {
     }
 
-    public HoaDon(int idHoaDon, String maHoaDon, String ngayTao, String ghiChu, int idNhanVien, int idKhachHang, double tongTien, String trangThai, String tenNhanVien, String tenKhachHang) {
+    public HoaDon(int idHoaDon, String maHoaDon, Date ngayTao, String ghiChu, int idNhanVien, int idKhachHang, double tongTien, String trangThai, String tenNhanVien, String tenKhachHang) {
         this.idHoaDon = idHoaDon;
         this.maHoaDon = maHoaDon;
         this.ngayTao = ngayTao;
@@ -45,11 +47,11 @@ public class HoaDon {
         this.maHoaDon = maHoaDon;
     }
 
-    public String getNgayTao() {
+    public Date getNgayTao() {
         return ngayTao;
     }
 
-    public void setNgayTao(String ngayTao) {
+    public void setNgayTao(Date ngayTao) {
         this.ngayTao = ngayTao;
     }
 

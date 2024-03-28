@@ -4,7 +4,23 @@
  */
 package view;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.Random;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import model.HoaDon;
+import model.NguoiDung;
+import model.SanPham;
+import model.SanPhamChiTiet;
+import service.Impl.SanPhamChiTietServiceImpl;
+import service.Impl.SanPhamServiceImpl;
+import service.SanPhamChiTietService;
+import service.SanPhamService;
+import service.HoaDonService;
+import service.Impl.HoaDonServiceImpl;
 
 /**
  *
@@ -15,9 +31,32 @@ public class NhanVienView extends javax.swing.JFrame {
     /**
      * Creates new form NhanVienForm
      */
+    DefaultTableModel dtm;
+    SanPhamService qlsp = new SanPhamServiceImpl();
+    SanPhamChiTietService qlspct = new SanPhamChiTietServiceImpl();
+    HoaDonService qlhd = new HoaDonServiceImpl();
+    private static NguoiDung currentNhanVien;
+    int idNhanVien = currentNhanVien.getIdNguoiDung();
+
     public NhanVienView() {
         initComponents();
         setLocationRelativeTo(null);
+        loadDanhSachSanPham();
+    }
+
+    void loadDanhSachSanPham() {
+        dtm = (DefaultTableModel) tblDanhSachSP.getModel();
+        dtm.setRowCount(0);
+        for (SanPhamChiTiet spct : qlspct.getAll()) {
+            dtm.addRow(new Object[]{
+                spct.getTenSanPham(),
+                spct.getTenMauSac(),
+                spct.getSize(),
+                spct.getTenChatLieu(),
+                spct.getGia(),
+                spct.getSoLuong()
+            });
+        }
     }
 
     /**
@@ -481,6 +520,11 @@ public class NhanVienView extends javax.swing.JFrame {
         jScrollPane3.setViewportView(tblSP_HD);
 
         btnTaoHD.setText("Tạo HĐ");
+        btnTaoHD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTaoHDActionPerformed(evt);
+            }
+        });
 
         btnSuaHD.setText("Sửa");
 
@@ -956,6 +1000,47 @@ public class NhanVienView extends javax.swing.JFrame {
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:\    
     }//GEN-LAST:event_jButton7ActionPerformed
+    private String taoMaHoaDon() {
+        // Định dạng cho phần số ngẫu nhiên
+        String format = "00000";
+
+        // Lấy ngày và giờ hiện tại
+        LocalDateTime now = LocalDateTime.now();
+
+        // Định dạng cho phần thời gian
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
+
+        // Tạo phần thời gian từ ngày và giờ hiện tại
+        String part1 = now.format(formatter);
+
+        // Tạo phần số ngẫu nhiên
+        String part2 = String.format("%05d", new Random().nextInt(100000));
+
+        // Ghép các phần lại với nhau để tạo mã hóa đơn
+        String maHoaDon = "HD" + part1 + part2;
+
+        return maHoaDon;
+    }
+    private void btnTaoHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaoHDActionPerformed
+        // TODO add your handling code here:
+        LocalDate ngayTaoLocalDate = LocalDate.now();
+        String maHoaDon = taoMaHoaDon();
+        Date ngayTaoDate = java.sql.Date.valueOf(ngayTaoLocalDate);
+        String trangThai = "Đang chờ";
+
+        HoaDon hd = new HoaDon();
+        hd.setNgayTao(ngayTaoDate);
+        hd.setMaHoaDon(maHoaDon);
+        hd.setTrangThai(trangThai);
+        hd.setIdNhanVien(idNhanVien);
+        Boolean themThanhCong = qlhd.themHoaDon(hd);
+        if (themThanhCong) {
+            JOptionPane.showMessageDialog(this, "Thêm hoá đơn thành công!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+            //loadDataHoaDonCho();
+        } else {
+            JOptionPane.showMessageDialog(this, "Thêm hoá đơn thất bại!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnTaoHDActionPerformed
 
     /**
      * @param args the command line arguments
