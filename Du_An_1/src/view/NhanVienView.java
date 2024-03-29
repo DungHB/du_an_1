@@ -35,13 +35,22 @@ public class NhanVienView extends javax.swing.JFrame {
     SanPhamService qlsp = new SanPhamServiceImpl();
     SanPhamChiTietService qlspct = new SanPhamChiTietServiceImpl();
     HoaDonService qlhd = new HoaDonServiceImpl();
-    private static NguoiDung currentNhanVien;
-    int idNhanVien = currentNhanVien.getIdNguoiDung();
+//    private static NguoiDung currentNhanVien;
+//
+//    public static NguoiDung getCurrentNhanVien() {
+//        return currentNhanVien;
+//    }
+//
+//    public static void setCurrentNhanVien(NguoiDung currentNhanVien) {
+//        NhanVienView.currentNhanVien = currentNhanVien;
+//    }
+//    int idNhanVien = currentNhanVien.getIdNguoiDung();
 
     public NhanVienView() {
         initComponents();
         setLocationRelativeTo(null);
         loadDanhSachSanPham();
+        loadDanhSachHoaDon();
     }
 
     void loadDanhSachSanPham() {
@@ -55,6 +64,18 @@ public class NhanVienView extends javax.swing.JFrame {
                 spct.getTenChatLieu(),
                 spct.getGia(),
                 spct.getSoLuong()
+            });
+        }
+    }
+
+    void loadDanhSachHoaDon() {
+        dtm = (DefaultTableModel) tblHoaDon.getModel();
+        dtm.setRowCount(0);
+        for (HoaDon hd : qlhd.getAllHoaDon()) {
+            dtm.addRow(new Object[]{
+                hd.getMaHoaDon(),
+                hd.getNgayTao(),
+                hd.getTrangThai()
             });
         }
     }
@@ -505,6 +526,11 @@ public class NhanVienView extends javax.swing.JFrame {
                 "ID Hóa Đơn", "Ngày Tạo", "Trạng Thái"
             }
         ));
+        tblHoaDon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblHoaDonMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tblHoaDon);
 
         tblSP_HD.setModel(new javax.swing.table.DefaultTableModel(
@@ -1023,24 +1049,38 @@ public class NhanVienView extends javax.swing.JFrame {
     }
     private void btnTaoHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaoHDActionPerformed
         // TODO add your handling code here:
-        LocalDate ngayTaoLocalDate = LocalDate.now();
-        String maHoaDon = taoMaHoaDon();
-        Date ngayTaoDate = java.sql.Date.valueOf(ngayTaoLocalDate);
-        String trangThai = "Đang chờ";
-
-        HoaDon hd = new HoaDon();
-        hd.setNgayTao(ngayTaoDate);
-        hd.setMaHoaDon(maHoaDon);
-        hd.setTrangThai(trangThai);
-        hd.setIdNhanVien(idNhanVien);
-        Boolean themThanhCong = qlhd.themHoaDon(hd);
-        if (themThanhCong) {
-            JOptionPane.showMessageDialog(this, "Thêm hoá đơn thành công!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-            //loadDataHoaDonCho();
-        } else {
-            JOptionPane.showMessageDialog(this, "Thêm hoá đơn thất bại!", "Lỗi", JOptionPane.ERROR_MESSAGE);
-        }
+//        LocalDate ngayTaoLocalDate = LocalDate.now();
+//        String maHoaDon = taoMaHoaDon();
+//        Date ngayTaoDate = java.sql.Date.valueOf(ngayTaoLocalDate);
+//        String trangThai = "Đang chờ";
+//
+//        HoaDon hd = new HoaDon();
+//        hd.setNgayTao(ngayTaoDate);
+//        hd.setMaHoaDon(maHoaDon);
+//        hd.setTrangThai(trangThai);
+//        hd.setIdNguoiDung(idNhanVien);
+//        Boolean themThanhCong = qlhd.themHoaDon(hd);
+//        if (themThanhCong) {
+//            JOptionPane.showMessageDialog(this, "Thêm hoá đơn thành công!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+//            //loadDataHoaDonCho();
+//        } else {
+//            JOptionPane.showMessageDialog(this, "Thêm hoá đơn thất bại!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+//        }
     }//GEN-LAST:event_btnTaoHDActionPerformed
+    void setFormHoaDon(HoaDon hd) {
+        lblMaHD.setText(hd.getMaHoaDon());
+        lblNgayTao.setText(hd.getNgayTao() + "");
+        lblNguoiTao.setText(hd.getTenNhanVien());
+        lblTenKH.setText(hd.getTenKhachHang());
+    }
+    private void tblHoaDonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHoaDonMouseClicked
+        // TODO add your handling code here:
+        int row = tblHoaDon.getSelectedRow();
+        if (row >= 0) {
+            setFormHoaDon(qlhd.getAllHoaDon().get(row));
+            //lblThanhTien.setText(text);
+        }
+    }//GEN-LAST:event_tblHoaDonMouseClicked
 
     /**
      * @param args the command line arguments

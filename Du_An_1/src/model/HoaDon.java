@@ -8,7 +8,7 @@ public class HoaDon {
     private String maHoaDon;
     private Date ngayTao;
     private String ghiChu;
-    private int idNhanVien;
+    private int idNguoiDung;
     private int idKhachHang;
     private double tongTien;
     private String trangThai;
@@ -18,12 +18,12 @@ public class HoaDon {
     public HoaDon() {
     }
 
-    public HoaDon(int idHoaDon, String maHoaDon, Date ngayTao, String ghiChu, int idNhanVien, int idKhachHang, double tongTien, String trangThai, String tenNhanVien, String tenKhachHang) {
+    public HoaDon(int idHoaDon, String maHoaDon, Date ngayTao, String ghiChu, int idNguoiDung, int idKhachHang, double tongTien, String trangThai, String tenNhanVien, String tenKhachHang) {
         this.idHoaDon = idHoaDon;
         this.maHoaDon = maHoaDon;
         this.ngayTao = ngayTao;
         this.ghiChu = ghiChu;
-        this.idNhanVien = idNhanVien;
+        this.idNguoiDung = idNguoiDung;
         this.idKhachHang = idKhachHang;
         this.tongTien = tongTien;
         this.trangThai = trangThai;
@@ -63,12 +63,12 @@ public class HoaDon {
         this.ghiChu = ghiChu;
     }
 
-    public int getIdNhanVien() {
-        return idNhanVien;
+    public int getIdNguoiDung() {
+        return idNguoiDung;
     }
 
-    public void setIdNhanVien(int idNhanVien) {
-        this.idNhanVien = idNhanVien;
+    public void setIdNguoiDung(int idNguoiDung) {
+        this.idNguoiDung = idNguoiDung;
     }
 
     public int getIdKhachHang() {
