@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Date;
+
 public class NguoiDung {
 
     private int idNguoiDung;
@@ -7,7 +9,7 @@ public class NguoiDung {
     private String tenNguoiDung;
     private String sdt;
     private String diaChi;
-    private String ngaySinh;
+    private Date ngaySinh;
     private String gioiTinh;
     private String matKhau;
     private int idChucVu;
@@ -17,7 +19,7 @@ public class NguoiDung {
     public NguoiDung() {
     }
 
-    public NguoiDung(int idNguoiDung, String maNguoiDung, String tenNguoiDung, String sdt, String diaChi, String ngaySinh, String gioiTinh, String matKhau, int idChucVu, String trangThai, String tenChucVu) {
+    public NguoiDung(int idNguoiDung, String maNguoiDung, String tenNguoiDung, String sdt, String diaChi, Date ngaySinh, String gioiTinh, String matKhau, int idChucVu, String trangThai, String tenChucVu) {
         this.idNguoiDung = idNguoiDung;
         this.maNguoiDung = maNguoiDung;
         this.tenNguoiDung = tenNguoiDung;
@@ -71,11 +73,11 @@ public class NguoiDung {
         this.diaChi = diaChi;
     }
 
-    public String getNgaySinh() {
+    public Date getNgaySinh() {
         return ngaySinh;
     }
 
-    public void setNgaySinh(String ngaySinh) {
+    public void setNgaySinh(Date ngaySinh) {
         this.ngaySinh = ngaySinh;
     }
 

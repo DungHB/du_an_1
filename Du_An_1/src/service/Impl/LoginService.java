@@ -4,7 +4,7 @@
  */
 package service.Impl;
 
-import Model.Login;
+import model.Login;
 import java.sql.*;
 import ultil.DBConnect;
 

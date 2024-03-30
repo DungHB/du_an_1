@@ -4,9 +4,13 @@
  */
 package view;
 
-import Model.Login;
+import java.util.List;
+import model.Login;
 import javax.swing.JOptionPane;
+import model.NguoiDung;
 import service.Impl.LoginService;
+import service.Impl.NguoiDungServiceImpl;
+import service.NguoiDungService;
 
 /**
  *
@@ -18,6 +22,8 @@ public class LoginView extends javax.swing.JFrame {
      * Creates new form LoginView
      */
     LoginService service = new LoginService();
+    NguoiDungService qlnd = new NguoiDungServiceImpl();
+    List<NguoiDung> list = qlnd.getAll();
 
     public LoginView() {
         initComponents();
@@ -114,41 +120,66 @@ public class LoginView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTenDNActionPerformed
 
-    public boolean chekFrom() {
-        if (txtTenDN.getText().isEmpty() || txtMK.getText().isEmpty()) {
-            return false;
-        }
-        return true;
-    }
+//    public boolean chekFrom() {
+//        if (txtTenDN.getText().isEmpty() || txtMK.getText().isEmpty()) {
+//            return false;
+//        }
+//        return true;
+//    }
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:       
-        if (chekFrom()) {
-            String usename = txtTenDN.getText().toUpperCase();
-            String password = new String(txtMK.getPassword());
-            Login login = service.selectByND(usename);
-            if (login != null) {
-                int chucvu = login.getId();
-                String chekMK = login.getMatKhau();
-                if (password.equals(chekMK)) {
-                    LoginService.lg = login;
-                    if (chucvu == 1) {
-                        QuanLyView ql = new QuanLyView();
-                        ql.setVisible(true);
-                    } else if (chucvu == 2) {
-                        NhanVienView nv = new NhanVienView();
-                        nv.setVisible(true);
-                    }
-                    this.dispose();
-                } else {
-                    JOptionPane.showMessageDialog(this, " Mật Khẩu không đúng");
+        // TODO add your handling code here: 
+        String maND = txtTenDN.getText();
+        char[] pwdCharArray = txtMK.getPassword();
+        String pwd = new String(pwdCharArray);
+        Login login = service.selectByND(maND);
+        try {
+            NguoiDung nd = qlnd.getLoginInfo(maND, pwd);
+            if (nd != null) {
+                int idChucvu = login.getId();
+                JOptionPane.showMessageDialog(this, "Đăng nhập thành công!");
+                if (idChucvu == 1) {
+                    QuanLyView qlv = new QuanLyView();
+                    qlv.setVisible(true);
+                } else if(idChucvu == 2){
+                    NhanVienView.setCurrentNhanVien(nd);
+                    NhanVienView nvv = new NhanVienView();
+                    nvv.setVisible(true);
                 }
-
+                this.dispose();
             } else {
-                JOptionPane.showMessageDialog(this, " Tên đăng nhập không đúng");
+                JOptionPane.showMessageDialog(this, "Đăng nhập thất bại. Vui lòng kiểm tra lại tên người dùng và mật khẩu.");
             }
-        } else {
-            JOptionPane.showMessageDialog(this, "vui lonh nhap day du user name va password");
+        } catch (Exception e) {
+            e.printStackTrace(); // In lỗi ra console
+            JOptionPane.showMessageDialog(this, "Đã xảy ra lỗi trong quá trình đăng nhập. Vui lòng thử lại sau.");
         }
+//        if (chekFrom()) {
+//            String usename = txtTenDN.getText().toUpperCase();
+//            String password = new String(txtMK.getPassword());
+//            Login login = service.selectByND(usename);
+//            if (login != null) {
+//                int chucvu = login.getId();
+//                String chekMK = login.getMatKhau();
+//                if (password.equals(chekMK)) {
+//                    LoginService.lg = login;
+//                    if (chucvu == 1) {
+//                        QuanLyView ql = new QuanLyView();
+//                        ql.setVisible(true);
+//                    } else if (chucvu == 2) {
+//                        NhanVienView nv = new NhanVienView();
+//                        nv.setVisible(true);
+//                    }
+//                    this.dispose();
+//                } else {
+//                    JOptionPane.showMessageDialog(this, " Mật Khẩu không đúng");
+//                }
+//
+//            } else {
+//                JOptionPane.showMessageDialog(this, " Tên đăng nhập không đúng");
+//            }
+//        } else {
+//            JOptionPane.showMessageDialog(this, "vui lonh nhap day du user name va password");
+//        }
 
 
     }//GEN-LAST:event_jButton1ActionPerformed

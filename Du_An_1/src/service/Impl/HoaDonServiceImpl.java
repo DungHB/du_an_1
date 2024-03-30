@@ -41,7 +41,7 @@ public class HoaDonServiceImpl implements HoaDonService {
     public boolean themHoaDon(HoaDon hd) {
         if (hd != null) {
             try {
-                String sql = "INSERT INTO HoaDon ( MaHoaDon, NgayTao, GhiChu, IdNhanVien, IdKhachHang,TrangThai) VALUES (?, ?, ?, ?, ?, ?)";
+                String sql = "INSERT INTO HoaDon ( MaHoaDon, NgayTao, GhiChu, IdNguoiDung, IdKhachHang,TrangThai) VALUES (?, ?, ?, ?, ?, ?)";
                 Connection conn = DBConnect.getConnection();
                 PreparedStatement stm = conn.prepareStatement(sql);
                 stm.setString(1, hd.getMaHoaDon());
