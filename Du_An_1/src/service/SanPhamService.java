@@ -1,12 +1,14 @@
 package service;
 
+import java.util.ArrayList;
 import java.util.List;
 import model.SanPham;
 
 public interface SanPhamService {
 
     List<SanPham> getAll();
-
+    SanPham getRowSP (int row);
+    
     List<SanPham> getSanPhamsByPage(int offset, int limit);
 
     Boolean themSanPham(SanPham sanPham);

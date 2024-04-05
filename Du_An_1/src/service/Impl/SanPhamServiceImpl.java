@@ -78,37 +78,42 @@ public class SanPhamServiceImpl implements SanPhamService {
 
     @Override
     public Boolean capNhatSanPham(SanPham sp) {
-        
+
         return null;
-        
+
     }
 
     @Override
     public SanPham layThongTinSanPhamTheoId(String idSanPham) {
-        
+
         return null;
-        
+
     }
 
     @Override
     public SanPham layThongTinSanPhamTheoMa(String maSanPham) {
-        
+
         return null;
-        
+
     }
 
     @Override
     public int getCountSanPham() {
-        
+
         return 0;
-        
+
     }
 
     @Override
     public List<SanPham> getSearchSP(String keyWordSP) {
-        
+
         return null;
-        
+
+    }
+
+    @Override
+    public SanPham getRowSP(int row) {
+        return list.get(row);
     }
 
 }

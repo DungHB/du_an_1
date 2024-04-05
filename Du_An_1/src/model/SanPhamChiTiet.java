@@ -11,6 +11,7 @@ public class SanPhamChiTiet {
     private int soLuong;
     private int idLSGia;
     private double giaBanDau;
+    private double giaSau;
     private String tenSanPham;
     private String tenChatLieu;
     private String tenMauSac;
@@ -19,7 +20,7 @@ public class SanPhamChiTiet {
     public SanPhamChiTiet() {
     }
 
-    public SanPhamChiTiet(int idSanPhamChiTiet, int idSanPham, int idChatLieu, int idMauSac, int idSize, double gia, int soLuong, int idLSGia, double giaBanDau, String tenSanPham, String tenChatLieu, String tenMauSac, int size) {
+    public SanPhamChiTiet(int idSanPhamChiTiet, int idSanPham, int idChatLieu, int idMauSac, int idSize, double gia, int soLuong, int idLSGia, double giaBanDau, double giaSau, String tenSanPham, String tenChatLieu, String tenMauSac, int size) {
         this.idSanPhamChiTiet = idSanPhamChiTiet;
         this.idSanPham = idSanPham;
         this.idChatLieu = idChatLieu;
@@ -29,6 +30,7 @@ public class SanPhamChiTiet {
         this.soLuong = soLuong;
         this.idLSGia = idLSGia;
         this.giaBanDau = giaBanDau;
+        this.giaSau = giaSau;
         this.tenSanPham = tenSanPham;
         this.tenChatLieu = tenChatLieu;
         this.tenMauSac = tenMauSac;
@@ -105,6 +107,14 @@ public class SanPhamChiTiet {
 
     public void setGiaBanDau(double giaBanDau) {
         this.giaBanDau = giaBanDau;
+    }
+
+    public double getGiaSau() {
+        return giaSau;
+    }
+
+    public void setGiaSau(double giaSau) {
+        this.giaSau = giaSau;
     }
 
     public String getTenSanPham() {

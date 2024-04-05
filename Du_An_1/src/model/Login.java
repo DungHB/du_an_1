@@ -1,94 +1,40 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package model;
 
-/**
- *
- * @author PC
- */
 public class Login {
-    private String MaNguoiDung,TenNhanVien,  Sdt, DiaChi, NgaySinh, GioiTinh, MatKhau;
-    private int id;
+
+    private String maNguoiDung, matKhau, chucVu;
 
     public Login() {
     }
 
-    public Login(String MaNguoiDung, String TenNhanVien, String Sdt, String DiaChi, String NgaySinh, String GioiTinh, String MatKhau, int id) {
-        this.MaNguoiDung = MaNguoiDung;
-        this.TenNhanVien = TenNhanVien;
-        this.Sdt = Sdt;
-        this.DiaChi = DiaChi;
-        this.NgaySinh = NgaySinh;
-        this.GioiTinh = GioiTinh;
-        this.MatKhau = MatKhau;
-        this.id = id;
+    public Login(String maNguoiDung, String matKhau, String chucVu) {
+        this.maNguoiDung = maNguoiDung;
+        this.matKhau = matKhau;
+        this.chucVu = chucVu;
     }
 
     public String getMaNguoiDung() {
-        return MaNguoiDung;
+        return maNguoiDung;
     }
 
-    public void setMaNguoiDung(String MaNguoiDung) {
-        this.MaNguoiDung = MaNguoiDung;
-    }
-
-    public String getTenNhanVien() {
-        return TenNhanVien;
-    }
-
-    public void setTenNhanVien(String TenNhanVien) {
-        this.TenNhanVien = TenNhanVien;
-    }
-
-    public String getSdt() {
-        return Sdt;
-    }
-
-    public void setSdt(String Sdt) {
-        this.Sdt = Sdt;
-    }
-
-    public String getDiaChi() {
-        return DiaChi;
-    }
-
-    public void setDiaChi(String DiaChi) {
-        this.DiaChi = DiaChi;
-    }
-
-    public String getNgaySinh() {
-        return NgaySinh;
-    }
-
-    public void setNgaySinh(String NgaySinh) {
-        this.NgaySinh = NgaySinh;
-    }
-
-    public String getGioiTinh() {
-        return GioiTinh;
-    }
-
-    public void setGioiTinh(String GioiTinh) {
-        this.GioiTinh = GioiTinh;
+    public void setMaNguoiDung(String maNguoiDung) {
+        this.maNguoiDung = maNguoiDung;
     }
 
     public String getMatKhau() {
-        return MatKhau;
+        return matKhau;
     }
 
-    public void setMatKhau(String MatKhau) {
-        this.MatKhau = MatKhau;
+    public void setMatKhau(String matKhau) {
+        this.matKhau = matKhau;
     }
 
-    public int getId() {
-        return id;
+    public String getChucVu() {
+        return chucVu;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setChucVu(String chucVu) {
+        this.chucVu = chucVu;
     }
 
-    
 }

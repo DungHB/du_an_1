@@ -6,6 +6,7 @@ public class HoaDonChiTiet {
     private int idHoaDon;
     private int idSanPhamChiTiet;
     private double donGia;
+    private double donGiaSau;
     private int soLuong;
     private double thanhTien;
     private String trangThai;
@@ -17,11 +18,12 @@ public class HoaDonChiTiet {
     public HoaDonChiTiet() {
     }
 
-    public HoaDonChiTiet(int idHoaDonChiTiet, int idHoaDon, int idSanPhamChiTiet, double donGia, int soLuong, double thanhTien, String trangThai, String tenSanPham, int size, String mauSac, String tenChatLieu) {
+    public HoaDonChiTiet(int idHoaDonChiTiet, int idHoaDon, int idSanPhamChiTiet, double donGia, double donGiaSau, int soLuong, double thanhTien, String trangThai, String tenSanPham, int size, String mauSac, String tenChatLieu) {
         this.idHoaDonChiTiet = idHoaDonChiTiet;
         this.idHoaDon = idHoaDon;
         this.idSanPhamChiTiet = idSanPhamChiTiet;
         this.donGia = donGia;
+        this.donGiaSau = donGiaSau;
         this.soLuong = soLuong;
         this.thanhTien = thanhTien;
         this.trangThai = trangThai;
@@ -29,6 +31,12 @@ public class HoaDonChiTiet {
         this.size = size;
         this.mauSac = mauSac;
         this.tenChatLieu = tenChatLieu;
+    }
+
+    public HoaDonChiTiet(int idHoaDon, int idSanPhamChiTiet, int soLuong) {
+        this.idHoaDon = idHoaDon;
+        this.idSanPhamChiTiet = idSanPhamChiTiet;
+        this.soLuong = soLuong;
     }
 
     public int getIdHoaDonChiTiet() {
@@ -61,6 +69,14 @@ public class HoaDonChiTiet {
 
     public void setDonGia(double donGia) {
         this.donGia = donGia;
+    }
+
+    public double getDonGiaSau() {
+        return donGiaSau;
+    }
+
+    public void setDonGiaSau(double donGiaSau) {
+        this.donGiaSau = donGiaSau;
     }
 
     public int getSoLuong() {
@@ -119,4 +135,12 @@ public class HoaDonChiTiet {
         this.tenChatLieu = tenChatLieu;
     }
 
+    @Override
+    public String toString() {
+        return "HoaDonChiTiet{" + "idHoaDonChiTiet=" + idHoaDonChiTiet + ", idHoaDon=" + idHoaDon + ", idSanPhamChiTiet=" + idSanPhamChiTiet + ", donGia=" + donGia + ", donGiaSau=" + donGiaSau + ", soLuong=" + soLuong + ", thanhTien=" + thanhTien + ", trangThai=" + trangThai + ", tenSanPham=" + tenSanPham + ", size=" + size + ", mauSac=" + mauSac + ", tenChatLieu=" + tenChatLieu + '}';
+    }
+
+    public void inThongTin() {
+        System.out.println("HoaDonChiTiet{" + "idHoaDonChiTiet=" + idHoaDonChiTiet + ", idHoaDon=" + idHoaDon + ", idSanPhamChiTiet=" + idSanPhamChiTiet + ", donGia=" + donGia + ", donGiaSau=" + donGiaSau + ", soLuong=" + soLuong + ", thanhTien=" + thanhTien + ", trangThai=" + trangThai + ", tenSanPham=" + tenSanPham + ", size=" + size + ", mauSac=" + mauSac + ", tenChatLieu=" + tenChatLieu + '}');
+    }
 }

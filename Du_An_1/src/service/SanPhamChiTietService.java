@@ -6,6 +6,9 @@ import model.SanPhamChiTiet;
 public interface SanPhamChiTietService {
 
     List<SanPhamChiTiet> getAll();
+    int getIdByMaND(String maND);
+    SanPhamChiTiet getRowSPCT (int row);
+    int getIdSPCTFromSP (int idSP);
 
     Boolean themSanPhamChiTiet(SanPhamChiTiet spct);
 

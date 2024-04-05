@@ -1,15 +1,19 @@
 package service.Impl;
 
+import com.sun.source.tree.StatementTree;
 import java.util.ArrayList;
 import java.util.List;
 import model.NguoiDung;
 import service.NguoiDungService;
 import java.sql.*;
+import model.*;
 import ultil.DBConnect;
 
 public class NguoiDungServiceImpl implements NguoiDungService {
 
     ArrayList<NguoiDung> listNguoiDung = new ArrayList<>();
+    ArrayList<Login> listLogin = new ArrayList<>();
+    ArrayList<Login> listGetNameLogin = new ArrayList<>();
 
     @Override
     public List<NguoiDung> getAll() {
@@ -39,7 +43,7 @@ public class NguoiDungServiceImpl implements NguoiDungService {
             stm.setString(1, maNguoiDung);
             stm.setString(2, matKhau);
             ResultSet rs = stm.executeQuery();
-            if(rs.next()){
+            if (rs.next()) {
                 NguoiDung nguoiDung = mapNguoiDung(rs);
             }
         } catch (Exception e) {
@@ -102,4 +106,41 @@ public class NguoiDungServiceImpl implements NguoiDungService {
         nd.setTrangThai(rs.getString(10));
         return nd;
     }
+
+    @Override
+    public ArrayList<Login> LoginSearch(String maND, String mk) {
+        listLogin.clear();
+        try {
+            String sql = "SELECT MaNguoiDung, MatKhau, cv.TenChucVu FROM NguoiDung nd\n"
+                    + "JOIN ChucVu cv ON nd.IdChucVu = cv.IdChucVu\n"
+                    + "WHERE nd.MaNguoiDung = ? AND nd.MatKhau = ?";
+            Connection conn = DBConnect.getConnection();
+            PreparedStatement stm = conn.prepareStatement(sql);
+            stm.setString(1, maND);
+            stm.setString(2, mk);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Login lg = new Login();
+                lg.setMaNguoiDung(rs.getString(1));
+                lg.setMatKhau(rs.getString(2));
+                lg.setChucVu(rs.getString(3));
+                listLogin.add(lg);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listLogin;
+    }
+
+    @Override
+    public ArrayList<Login> tenNV(Login lg) {
+        listGetNameLogin.add(lg);
+        return listGetNameLogin;
+    }
+
+    @Override
+    public String listLG() {
+        return listGetNameLogin.get(0).getMaNguoiDung();
+    }
+
 }

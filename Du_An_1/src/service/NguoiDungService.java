@@ -1,11 +1,16 @@
 package service;
 
+import java.util.ArrayList;
 import java.util.List;
+import model.*;
 import model.NguoiDung;
 
 public interface NguoiDungService {
 
     List<NguoiDung> getAll();
+    ArrayList<Login> LoginSearch(String maND, String mk);
+    ArrayList<Login> tenNV(Login lg);
+    String listLG();
 
     NguoiDung getLoginInfo(String maNguoiDung, String matKhau);
 

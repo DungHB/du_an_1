@@ -1,29 +1,18 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package view;
 
-import java.util.List;
+import java.util.ArrayList;
 import model.Login;
 import javax.swing.JOptionPane;
-import model.NguoiDung;
-import service.Impl.LoginService;
 import service.Impl.NguoiDungServiceImpl;
 import service.NguoiDungService;
 
-/**
- *
- * @author Hi Windows 10
- */
 public class LoginView extends javax.swing.JFrame {
 
     /**
      * Creates new form LoginView
      */
-    LoginService service = new LoginService();
-    NguoiDungService qlnd = new NguoiDungServiceImpl();
-    List<NguoiDung> list = qlnd.getAll();
+    NguoiDungService qlLogin = new NguoiDungServiceImpl();
+    ArrayList<Login> list = new ArrayList<>();
 
     public LoginView() {
         initComponents();
@@ -43,7 +32,7 @@ public class LoginView extends javax.swing.JFrame {
         txtTenDN = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         txtMK = new javax.swing.JPasswordField();
-        jButton2 = new javax.swing.JButton();
+        btnCancel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -52,11 +41,6 @@ public class LoginView extends javax.swing.JFrame {
 
         txtTenDN.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtTenDN.setBorder(javax.swing.BorderFactory.createTitledBorder("Tài khoản đăng nhập"));
-        txtTenDN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTenDNActionPerformed(evt);
-            }
-        });
 
         jButton1.setText("Đăng nhập");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -68,10 +52,10 @@ public class LoginView extends javax.swing.JFrame {
         txtMK.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtMK.setBorder(javax.swing.BorderFactory.createTitledBorder("Nhập mật khẩu"));
 
-        jButton2.setText("Cancel");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnCancel.setText("Cancel");
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnCancelActionPerformed(evt);
             }
         });
 
@@ -89,7 +73,7 @@ public class LoginView extends javax.swing.JFrame {
                             .addContainerGap()
                             .addComponent(jButton1)
                             .addGap(18, 18, 18)
-                            .addComponent(jButton2))
+                            .addComponent(btnCancel))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addGap(21, 21, 21)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -109,85 +93,54 @@ public class LoginView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(btnCancel))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtTenDNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenDNActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTenDNActionPerformed
-
-//    public boolean chekFrom() {
-//        if (txtTenDN.getText().isEmpty() || txtMK.getText().isEmpty()) {
-//            return false;
-//        }
-//        return true;
-//    }
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here: 
-        String maND = txtTenDN.getText();
-        char[] pwdCharArray = txtMK.getPassword();
-        String pwd = new String(pwdCharArray);
-        Login login = service.selectByND(maND);
-        try {
-            NguoiDung nd = qlnd.getLoginInfo(maND, pwd);
-            if (nd != null) {
-                int idChucvu = login.getId();
-                JOptionPane.showMessageDialog(this, "Đăng nhập thành công!");
-                if (idChucvu == 1) {
-                    QuanLyView qlv = new QuanLyView();
-                    qlv.setVisible(true);
-                } else if(idChucvu == 2){
-                    NhanVienView.setCurrentNhanVien(nd);
-                    NhanVienView nvv = new NhanVienView();
-                    nvv.setVisible(true);
-                }
-                this.dispose();
-            } else {
-                JOptionPane.showMessageDialog(this, "Đăng nhập thất bại. Vui lòng kiểm tra lại tên người dùng và mật khẩu.");
-            }
-        } catch (Exception e) {
-            e.printStackTrace(); // In lỗi ra console
-            JOptionPane.showMessageDialog(this, "Đã xảy ra lỗi trong quá trình đăng nhập. Vui lòng thử lại sau.");
+    public boolean checkForm() {
+        if (txtTenDN.getText().isEmpty() || txtMK.getText().isEmpty()) {
+            return false;
         }
-//        if (chekFrom()) {
-//            String usename = txtTenDN.getText().toUpperCase();
-//            String password = new String(txtMK.getPassword());
-//            Login login = service.selectByND(usename);
-//            if (login != null) {
-//                int chucvu = login.getId();
-//                String chekMK = login.getMatKhau();
-//                if (password.equals(chekMK)) {
-//                    LoginService.lg = login;
-//                    if (chucvu == 1) {
-//                        QuanLyView ql = new QuanLyView();
-//                        ql.setVisible(true);
-//                    } else if (chucvu == 2) {
-//                        NhanVienView nv = new NhanVienView();
-//                        nv.setVisible(true);
-//                    }
-//                    this.dispose();
-//                } else {
-//                    JOptionPane.showMessageDialog(this, " Mật Khẩu không đúng");
-//                }
-//
-//            } else {
-//                JOptionPane.showMessageDialog(this, " Tên đăng nhập không đúng");
-//            }
-//        } else {
-//            JOptionPane.showMessageDialog(this, "vui lonh nhap day du user name va password");
-//        }
-
-
+        return true;
+    }
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        if (checkForm()) {
+            String maND = txtTenDN.getText();
+            char[] pass = txtMK.getPassword();
+            String mk = new String(pass);
+            list = qlLogin.LoginSearch(maND, mk);
+            Login lg = new Login(maND, mk, "");
+//            qlLogin.tenNV(lg);
+//            System.out.println(lg.getMaNguoiDung());
+//            qlLogin.listLG();
+//            System.out.println(qlLogin.listLG());
+            if (list.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Đăng nhập thất bại. Vui lòng kiểm tra lại tên tài khoản và mật khẩu!");
+            } else if (list.size() == 1 && list.get(0).getChucVu().equals("Quản lý")) {
+                JOptionPane.showMessageDialog(this, "Đăng nhập thành công!");
+                this.dispose();
+                QuanLyView qlv = new QuanLyView();
+                qlv.setVisible(true);
+            } else if (list.size() == 1 && list.get(0).getChucVu().equals("Nhân viên")) {
+                JOptionPane.showMessageDialog(this, "Đăng nhập thành công!");
+                this.dispose();
+                NhanVienView nvv = new NhanVienView();
+                nvv.setVisible(true);
+                nvv.qlLogin.tenNV(lg);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ tên tài khoản và mật khẩu!");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         // TODO add your handling code here:
         System.exit(0);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnCancelActionPerformed
 
     /**
      * @param args the command line arguments
@@ -225,8 +178,8 @@ public class LoginView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCancel;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPasswordField txtMK;
     private javax.swing.JTextField txtTenDN;

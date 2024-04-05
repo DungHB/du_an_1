@@ -19,7 +19,7 @@ public class HoaDonServiceImpl implements HoaDonService {
             Connection conn = DBConnect.getConnection();
             Statement stm = conn.createStatement();
             ResultSet rs = stm.executeQuery(sql);
-            while(rs.next()){
+            while (rs.next()) {
                 HoaDon hd = new HoaDon();
                 hd.setIdHoaDon(rs.getInt(1));
                 hd.setMaHoaDon(rs.getString(2));
@@ -38,26 +38,21 @@ public class HoaDonServiceImpl implements HoaDonService {
     }
 
     @Override
-    public boolean themHoaDon(HoaDon hd) {
-        if (hd != null) {
-            try {
-                String sql = "INSERT INTO HoaDon ( MaHoaDon, NgayTao, GhiChu, IdNguoiDung, IdKhachHang,TrangThai) VALUES (?, ?, ?, ?, ?, ?)";
-                Connection conn = DBConnect.getConnection();
-                PreparedStatement stm = conn.prepareStatement(sql);
-                stm.setString(1, hd.getMaHoaDon());
-                stm.setDate(2, new java.sql.Date(hd.getNgayTao().getTime()));
-                stm.setString(3, hd.getGhiChu());
-                stm.setInt(4, hd.getIdNguoiDung());
-                stm.setInt(5, hd.getIdKhachHang());
-                stm.setString(6, hd.getTrangThai());
-                stm.executeUpdate();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return true;
-        } else {
-            return false;
+    public ArrayList<HoaDon> themHoaDon(HoaDon hd) {
+        try {
+            String sql = "INSERT INTO HoaDon ( MaHoaDon, NgayTao, IdNguoiDung, TrangThai) VALUES (?, ?, ?, ?)";
+            Connection conn = DBConnect.getConnection();
+            PreparedStatement stm = conn.prepareStatement(sql);
+            stm.setString(1, hd.getMaHoaDon());
+            stm.setDate(2, new java.sql.Date(hd.getNgayTao().getTime()));
+            stm.setInt(3, hd.getIdNguoiDung());
+            stm.setString(4, hd.getTrangThai());
+            stm.executeUpdate();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+        return list;
     }
 
     @Override
@@ -100,6 +95,11 @@ public class HoaDonServiceImpl implements HoaDonService {
     @Override
     public List<HoaDon> getAllViewTable() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public HoaDon getRowHD(int row) {
+        return list.get(row);
     }
 
 }
