@@ -17,23 +17,23 @@ public class NguoiDungServiceImpl {
 
     public List<NguoiDung> getAll() {
         list = new ArrayList<>();
-        sql = "select IDNguoiDung, MaNguoiDung, TenNhanVien, Sdt, DiaChi, NgaySinh, GioiTinh, TenChucVu, MatKhau, TrangThai from NguoiDung";
+        sql = "select * from NguoiDung";
         try {
             con = DbConnect.getConnection();
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
                 NguoiDung ND = new NguoiDung();
-                ND.setIdNhanvien(rs.getInt(1));
-                ND.setMaNhanVien(rs.getString(2));
-                ND.settenNhanvien(rs.getString(3));
+                ND.setIdNguoiDung(rs.getInt(1));
+                ND.setMaNguoiDung(rs.getString(2));
+                ND.setTenNguoiDung(rs.getString(3));
                 ND.setSdt(rs.getString(4));
                 ND.setDiaChi(rs.getString(5));
                 ND.setNgaySinh(rs.getString(7));
-                ND.setGioiTinh(rs.getString(6));
+                ND.setGioiTinh(rs.getBoolean(6));
                 ND.setMatKhau(rs.getString(8));
-                ND.setTenChucVu(rs.getString(9));
-                ND.setTrangThai(rs.getString(10));
+                ND.setIdChucVu(rs.getInt(9));
+                ND.setTrangThai(rs.getBoolean(10));
                 list.add(ND);
             }
             return list;
@@ -42,71 +42,84 @@ public class NguoiDungServiceImpl {
             return null;
         }
     }
-    public NguoiDung getRow(int row){
+
+    public NguoiDung getRow(int row) {
         return list.get(row);
     }
-    
-    public int insertND(NguoiDung ND){
-        sql =" insert into NguoiDung values(?,?,?,?,?,?,?,?,?,?)";
+
+
+    public int insertND(NguoiDung ND) {
+        sql = " insert into NguoiDung values(?,?,?,?,?,?,?,?,?,?)";
         try {
             con = DbConnect.getConnection();
             ps = con.prepareStatement(sql);
-            ps.setInt(1, ND.getIdNhanvien());
-            ps.setString(2, ND.getMaNhanVien());
-            ps.setString(3, ND.gettenNhanvien());
+            ps.setInt(1, ND.getIdNguoiDung());
+            ps.setString(2, ND.getMaNguoiDung());
+            ps.setString(3, ND.getTenNguoiDung());
             ps.setString(4, ND.getSdt());
             ps.setString(5, ND.getDiaChi());
             ps.setString(6, ND.getNgaySinh());
-            ps.setString(7, ND.getGioiTinh());
+            ps.setBoolean(7, ND.isGioiTinh());
             ps.setString(8, ND.getMatKhau());
-            ps.setString(9, ND.getTenChucVu());
-            ps.setString(10, ND.getTrangThai());
+            ps.setInt(9, ND.getIdChucVu());
+            ps.setBoolean(10, ND.isTrangThai());
+            if(ps.executeUpdate() > 0){
+                System.out.println("Thêm thành công");
+                return 1;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return -1;
+    }
+
+    public int Update(String ma, NguoiDung nd) {
+        sql = "Update NguoiDung set IdNguoiDung = ? , MaNguoiDung = ?, TenNguoiDung = ?, Sdt = ? ,DiaChi = ? , NgaySinh = ? , GioiTinh = ? , MatKhau = ?  ,IdChucvu = ? , TrangThai = ? \n" + "where maNguoiDung = ?;";
+        try {
+            con = DbConnect.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, nd.getIdNguoiDung());
+            ps.setString(2, nd.getMaNguoiDung());
+            ps.setString(3, nd.getTenNguoiDung());
+            ps.setString(4, nd.getSdt());
+            ps.setString(5, nd.getDiaChi());
+            ps.setString(6, nd.getNgaySinh());
+            ps.setBoolean(7, nd.isGioiTinh());
+            ps.setString(8, nd.getMatKhau());
+            ps.setInt(9, nd.getIdChucVu());
+            ps.setBoolean(10, nd.isTrangThai());
+            ps.setString(11, ma);
             return ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
+            return 0;
         }
-        return 0;
     }
-public int Update(String ma , NguoiDung nd){
-    sql="Update NguoiDung set IdNguoiDung = ? , MaNguoiDung = ?, TenNhanVien = ?, Sdt = ? ,DiaChi = ? , NgaySinh = ? , GioiTinh = ? , MatKhau = ? , tenChucvu = ? , TrangThai = ? \n"+"where MaNguoiDung = ?;";
-    try {
-        con = DbConnect.getConnection();
-        ps = con.prepareStatement(sql);
-        ps.setInt(1, nd.getIdNhanvien());
-        ps.setString(2, nd.getMaNhanVien());
-        ps.setString(3, nd.getMaNhanVien());
-        ps.setString(4, nd.getMaNhanVien());
-        ps.setString(5, nd.getMaNhanVien());
-        ps.setString(6, nd.getMaNhanVien());
-        ps.setString(7, nd.getMaNhanVien());
-        ps.setString(8, nd.getMaNhanVien());
-        ps.setString(9, nd.getMaNhanVien());
-        ps.setString(10, nd.getMaNhanVien());
-        ps.setString(11, nd.getMaNhanVien());
-        ps.setString(12, ma);
-        return ps.executeUpdate();
-    } catch (Exception e) {
-        e.printStackTrace();
-        return 0;
-    }
-}
-public List<NguoiDung> timTheoTen(String ten) {
+    public NguoiDung findTen(String tenNhanVien) throws SQLException {
+        rs = null;
+        ps = null;
         try {
-            list = new ArrayList<>();
+            sql = "Select * from NguoiDung Where =" + tenNhanVien;
             con = DbConnect.getConnection();
-            sql = " select * from NguoiDung where hoten like ?";
             ps = con.prepareStatement(sql);
-            ps.setString(1, "%"+ten+"%");
             rs = ps.executeQuery();
             while (rs.next()) {
-                NguoiDung ND = new NguoiDung(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9));
-                list.add(ND);
+                NguoiDung ND = new NguoiDung();
+                ND.setIdNguoiDung(rs.getInt(1));
+                ND.setMaNguoiDung(rs.getString(2));
+                ND.setTenNguoiDung(rs.getString(3));
+                ND.setSdt(rs.getString(4));
+                ND.setDiaChi(rs.getString(5));
+                ND.setNgaySinh(rs.getString(7));
+                ND.setGioiTinh(rs.getBoolean(6));
+                ND.setMatKhau(rs.getString(8));
+                ND.setIdChucVu(rs.getInt(9));
+                ND.setTrangThai(rs.getBoolean(10));
             }
-            return list;
         } catch (Exception e) {
             e.printStackTrace();
-              return null;
+            return null;
         }
-      
+        return null;
     }
 }

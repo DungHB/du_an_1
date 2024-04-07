@@ -2,68 +2,55 @@ package model;
 
 public class NguoiDung {
 
-    private int idNhanvien;
-    private String maNhanVien;
-    private String tenNhanvien;
+    private int idNguoiDung;
+    private String maNguoiDung;
+    private String tenNguoiDung;
     private String sdt;
     private String diaChi ;
     private String ngaySinh;
-    private String gioiTinh;
+    private boolean gioiTinh;
     private String matKhau;
-    private String tenChucVu;
-    private String trangThai;
+    private int idChucVu;
+    private boolean trangThai;
 
     public NguoiDung() {
     }
 
-    public NguoiDung(int idNhanvien, String maNhanVien, String tenNhanvien, String sdt, String diaChi, String ngaySinh, String gioiTinh, String matKhau, String tenChucVu, String trangThai) {
-        this.idNhanvien = idNhanvien;
-        this.maNhanVien = maNhanVien;
-        this.tenNhanvien = tenNhanvien;
+    public NguoiDung(int idNguoiDung, String maNguoiDung, String tenNguoiDung, String sdt, String diaChi, String ngaySinh, boolean gioiTinh, String matKhau, int idChucVu, boolean trangThai) {
+        this.idNguoiDung = idNguoiDung;
+        this.maNguoiDung = maNguoiDung;
+        this.tenNguoiDung = tenNguoiDung;
         this.sdt = sdt;
         this.diaChi = diaChi;
         this.ngaySinh = ngaySinh;
         this.gioiTinh = gioiTinh;
         this.matKhau = matKhau;
-        this.tenChucVu = tenChucVu;
+        this.idChucVu = idChucVu;
         this.trangThai = trangThai;
     }
 
-    public NguoiDung(String maNhanVien, String tenNhanvien, String sdt, String diaChi, String ngaySinh, String gioiTinh, String matKhau, String tenChucVu, String trangThai) {
-        this.maNhanVien = maNhanVien;
-        this.tenNhanvien = tenNhanvien;
-        this.sdt = sdt;
-        this.diaChi = diaChi;
-        this.ngaySinh = ngaySinh;
-        this.gioiTinh = gioiTinh;
-        this.matKhau = matKhau;
-        this.tenChucVu = tenChucVu;
-        this.trangThai = trangThai;
+    public int getIdNguoiDung() {
+        return idNguoiDung;
     }
 
-
-    public int getIdNhanvien() {
-        return idNhanvien;
+    public void setIdNguoiDung(int idNguoiDung) {
+        this.idNguoiDung = idNguoiDung;
     }
 
-    public void setIdNhanvien(int idNhanvien) {
-        this.idNhanvien = idNhanvien;
+    public String getMaNguoiDung() {
+        return maNguoiDung;
     }
 
-    public String getMaNhanVien() {
-        return maNhanVien;
+    public void setMaNguoiDung(String maNguoiDung) {
+        this.maNguoiDung = maNguoiDung;
     }
 
-    public void setMaNhanVien(String maNhanVien) {
-        this.maNhanVien = maNhanVien;
+    public String getTenNguoiDung() {
+        return tenNguoiDung;
     }
 
-    public String gettenNhanvien() {
-        return tenNhanvien;
-    }
-
-    public void settenNhanvien(String tenNhanvien) {
-        this.tenNhanvien = tenNhanvien;
+    public void setTenNguoiDung(String tenNguoiDung) {
+        this.tenNguoiDung = tenNguoiDung;
     }
 
     public String getSdt() {
@@ -90,11 +77,11 @@ public class NguoiDung {
         this.ngaySinh = ngaySinh;
     }
 
-    public String getGioiTinh() {
+    public boolean isGioiTinh() {
         return gioiTinh;
     }
 
-    public void setGioiTinh(String gioiTinh) {
+    public void setGioiTinh(boolean gioiTinh) {
         this.gioiTinh = gioiTinh;
     }
 
@@ -106,30 +93,20 @@ public class NguoiDung {
         this.matKhau = matKhau;
     }
 
-    public String getTenChucVu() {
-        return tenChucVu;
+    public int getIdChucVu() {
+        return idChucVu;
     }
 
-    public void setTenChucVu(String tenChucVu) {
-        this.tenChucVu = tenChucVu;
+    public void setIdChucVu(int idChucVu) {
+        this.idChucVu = idChucVu;
     }
 
-    public String getTrangThai() {
+    public boolean isTrangThai() {
         return trangThai;
     }
 
-    public void setTrangThai(String trangThai) {
+    public void setTrangThai(boolean trangThai) {
         this.trangThai = trangThai;
     }
-    public Object[] toDataRow(){
-        return new Object[]{this.idNhanvien,this.maNhanVien,this.tenNhanvien,this.sdt,this.diaChi,this.ngaySinh,this.gioiTinh,this.matKhau,this.tenChucVu,this.trangThai};
-    }
-    @Override
-    public String toString() {
-        return "NguoiDung{"+"IdNhanVien"+idNhanvien+", maNhanVien"+maNhanVien+", tenNhanVien"+tenNhanvien+", sdt"+sdt+", diaChi"+diaChi+", ngaySinh"+ngaySinh+", matKhau"+matKhau+", trangThai"+trangThai+'}';
-    }
-
-    public void add(String trim) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+    
 }

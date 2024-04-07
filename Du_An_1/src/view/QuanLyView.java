@@ -21,12 +21,12 @@ public class QuanLyView extends javax.swing.JFrame {
     private NguoiDungServiceImpl nguoiDung = new NguoiDungServiceImpl();
     private DefaultTableModel model = new DefaultTableModel();
     private int index = -1;
-    ArrayList<NguoiDung> ListNV = new ArrayList<>();
+    ArrayList<NguoiDung> ListND = new ArrayList<>();
 
     public QuanLyView() {
         initComponents();
         setLocationRelativeTo(null);
-        fillToTable(ListNV);
+        fillToTable(ListND);
     }
 
     void fillToTable(List<NguoiDung> list) {
@@ -34,33 +34,34 @@ public class QuanLyView extends javax.swing.JFrame {
         model.setRowCount(0);
         for (NguoiDung nguoidung : nguoiDung.getAll()) {
             model.addRow(new Object[]{
-                nguoidung.getIdNhanvien(),
-                nguoidung.getMaNhanVien(),
-                nguoidung.gettenNhanvien(),
+                nguoidung.getIdNguoiDung(),
+                nguoidung.getMaNguoiDung(),
+                nguoidung.getTenNguoiDung(),
                 nguoidung.getSdt(),
                 nguoidung.getDiaChi(),
                 nguoidung.getNgaySinh(),
-                nguoidung.getGioiTinh(),
+                nguoidung.isGioiTinh(),
                 nguoidung.getMatKhau(),
-                nguoidung.getTrangThai()
+                nguoidung.getIdChucVu(),
+                nguoidung.isTrangThai()
             });
         }
     }
 
     public void showDetail(int index) {
-        txt_MaNhanVien.setText(nguoiDung.getAll().get(index).getMaNhanVien());
-        txt_TenNhanVien.setText(nguoiDung.getAll().get(index).gettenNhanvien());
+        txt_MaNhanVien.setText(nguoiDung.getAll().get(index).getMaNguoiDung());
+        txt_TenNhanVien.setText(nguoiDung.getAll().get(index).getTenNguoiDung());
         txt_SodienThoai.setText(nguoiDung.getAll().get(index).getSdt());
         txt_DiaChi.setText(nguoiDung.getAll().get(index).getDiaChi());
         txt_Ngaysinh.setText(nguoiDung.getAll().get(index).getNgaySinh());
-        if ("Nam".equals(nguoiDung.getAll().get(index).getGioiTinh())) {
+        if ("Nam".equals(nguoiDung.getAll().get(index).isGioiTinh())) {
             rb_nam1.setSelected(true);
         } else {
             rb_nu1.setSelected(true);
         }
         txt_Matkhau.setText(nguoiDung.getAll().get(index).getMatKhau());
-        cbb_chucVu.setSelectedItem(nguoiDung.getAll().get(index).getTenChucVu());
-        if ("Đã nghỉ".equals(nguoiDung.getAll().get(index).getTrangThai())) {
+        cbb_chucVu.setSelectedItem(nguoiDung.getAll().get(index).getIdChucVu());
+        if ("Đã nghỉ".equals(nguoiDung.getAll().get(index).isTrangThai())) {
             rb_daNghi.setSelected(true);
         } else {
             rb_diLam.setSelected(true);
@@ -68,60 +69,36 @@ public class QuanLyView extends javax.swing.JFrame {
 
     }
 
-    NguoiDung readFrom() {
-        String maNhanvien, TenNhanvien, sdt, diaChi, ngaySinh, gioiTinh, matKhau, TenChucvu, trangThai;
-        maNhanvien = txt_MaNhanVien.getText().trim();
-        TenNhanvien = txt_TenNhanVien.getText().trim();
-        sdt = txt_SodienThoai.getText().trim();
-        diaChi = txt_diaChi.getText().trim();
-        ngaySinh = txt_ngaySinh.getText().trim();
-        if (rb_nam1.isSelected()) {
-            gioiTinh = "Nam";
-        } else {
-            gioiTinh = "Nữ";
-        }
-        matKhau = txt_Matkhau.getText().trim();
-        TenChucvu = cbb_chucVu.getSelectedItem().toString();
-        if (rb_daNghi.isSelected()) {
-            trangThai = "Đã nghỉ";
-        } else {
-            trangThai = "Đang làm";
-        }
-        return new NguoiDung(maNhanvien, TenNhanvien, sdt, diaChi, ngaySinh, gioiTinh, matKhau, TenChucvu, trangThai);
-    }
-
-    public void tim() {
-        try {
-            String ten = txt_keyWord1.getText().trim();
-            boolean isok = false;
-            for (NguoiDung nguoiDung1 : ListNV) {
-                if (nguoiDung.timTheoTen(ten).isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Đã tìm thấy");
-                    index = ListNV.indexOf(ListNV);
-                    showDetail(index);
-                    isok = true;
-                    break;
-                } else {
-                    JOptionPane.showMessageDialog(this, "Không tìm thấy");
-                }
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Lỗi: " + e.getMessage());
-        }
-    }
+//    public void tim() {
+//        try {
+//            String ten = txt_keyWord1.getText().trim();
+//            boolean isok = false;
+//            for (NguoiDung nguoiDung : ListNV) {
+//                if (nguoiDung.findTen(ten).equals(ten)) {
+//                    JOptionPane.showMessageDialog(this, "Đã tìm thấy");
+//                    index = ListNV.indexOf(ListNV);
+//                    showDetail(index);
+//                    isok = true;
+//                    break;
+//                } else {
+//                    JOptionPane.showMessageDialog(this, "Không tìm thấy");
+//                }
+//            }
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(this, "Lỗi: " + e.getMessage());
+//        }
+//    }
 
     private void Prev() {
-        if (index > 0) {
-            index--;
-            showDetail(index);
-        }
+        int row = tbl_ThongTinNhanVien.getSelectedRow();
+        index--;
+        showDetail(row);
     }
 
     private void Next() {
-        if (index < ListNV.size() - 1) {
+        int row = tbl_ThongTinNhanVien.getSelectedRow();
             index++;
-            showDetail(index);
-        }
+            showDetail(row);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -1654,7 +1631,6 @@ public class QuanLyView extends javax.swing.JFrame {
             index = row;
             showDetail(row);
         }
-
     }//GEN-LAST:event_tbl_ThongTinNhanVienMouseClicked
 
     private void btn_suaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_suaMouseClicked
@@ -1686,7 +1662,7 @@ public class QuanLyView extends javax.swing.JFrame {
 
     private void btn_tim1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_tim1MouseClicked
         // TODO add your handling code here:
-        tim();
+//        tim();
     }//GEN-LAST:event_btn_tim1MouseClicked
 
     /**
