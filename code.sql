@@ -25,23 +25,13 @@ INSERT INTO KhachHang (MaKhachHang, TenKhachHang, Sdt, DiaChi, GioiTinh, NgaySin
 
 Select * from KhachHang
 
-Insert into NguoiDung(MaNguoiDung,TenNhanVien,  Sdt, DiaChi, NgaySinh, GioiTinh, MatKhau, tenChucvu, TrangThai) VALUES
-('NV001', N'Hoàng Văn Trí', '0559577371', N'54 Hoàng Ngân', '2003-1-17', N'Nam', N'nv123', N'Nhân viên', 1),
-('NV009', N'Đào Duy Hà', '0826263688', N'21 Trần Duy Hưng', '2003-1-17', N'Nam', N'ql123',  N'Nhân viên', 2),
-('NV002', N'Bùi Thị Hân', '0826263680', N'43 Nguyễn Chí Thanh', '2003-1-17', N'Nữ', N'nv123', N'Nhân viên', 2),
-('NV003', N'Trần Thu Vy', '0926243680', N'12 Hoàng Cầu', '2003-1-17', N'Nữ', N'nv123', N'Phó Phòng', 2),
-('NV0235', N'Trần Thu Thúy', '0926243680', N'12 Hoàng Cầu', '2003-1-17', N'Nữ', N'nv123', N'Nhân viên', 2),
-('NV0468', N'Trần Thị Thu Hạnh', '0926243680', N'12 Hoàng Cầu', '2003-1-17', N'Nữ', N'nv123',N'Nhân viên', 2),
-('NV0543', N'Trần Thu Vỹ', '0926243680', N'12 Hoàng Cầu', '2003-1-17', N'Nữ', N'nv123',  N'Nhân viên', 1),
-('NV0358', N'Phan Văn Lương', '0926243680', N'12 Hoàng Cầu', '2003-1-17', N'Nam', N'nv123',  N'Tổng phòng', 2),
-('NV0597', N'Trần Uy Nghi', '0926243680', N'12 Hoàng Cầu', '2003-1-17', N'Nam', N'nv123',  N'Nhân viên', 1),
-('NV02136', N'Trần Văn Cương', '0926243680', N'12 Hoàng Cầu', '2003-1-17', N'Nam', N'nv123',  N'Nhân viên', 2),
-('NV0236', N'Lê Anh Túc', '0926243680', N'12 Hoàng Cầu', '2003-1-17', N'Nam', N'nv123',  N'Trưởng Phòng', 2),
-('NV0958', N'Ma Văn Cao', '0926243680', N'12 Hoàng Cầu', '2003-1-17', N'Nam', N'nv123',  N'Nhân viên', 3),
-('NV03447', N'Trần Thúy Hằng', '0926243680', N'12 Hoàng Cầu', '2003-1-17', N'Nữ', N'nv123',  N'Nhân viên', 3)
+Insert into NguoiDung(MaNguoiDung,TenNhanVien,  Sdt, DiaChi, NgaySinh, GioiTinh, MatKhau, IdChucVu) VALUES
+('NV001', N'Hoàng Văn Trí', '0559577371', N'54 Hoàng Ngân', '2003-1-17', N'Nam', N'nv123', 2),
+('QL001', N'Đào Duy Hà', '0826263688', N'21 Trần Duy Hưng', '2003-1-17', N'Nam', N'ql123', 1),
+('NV002', N'Bùi Thị Hân', '0826263680', N'43 Nguyễn Chí Thanh', '2003-1-17', N'Nữ', N'nv123', 2),
+('NV003', N'Trần Thu Vy', '0926243680', N'12 Hoàng Cầu', '2003-1-17', N'Nữ', N'nv123', 2)
 
 select * from NguoiDung
-Update NguoiDung set IdNguoiDung = ? , MaNguoiDung = ?, TenNhanVien = ?, Sdt = ? ,DiaChi = ? , NgaySinh = ? , GioiTinh = ? , MatKhau = ? , IdChucVu = ? , tenChucvu = ? , TrangThai = ? \n
 SELECT * FROM NguoiDung WHERE MaNguoiDung = 'NV001' AND MatKhau = 'nv123'
 Insert into ThuongHieu (TenThuongHieu)VALUES
 (N'Adidas'),

@@ -128,4 +128,8 @@ public class NguoiDung {
     public String toString() {
         return "NguoiDung{"+"IdNhanVien"+idNhanvien+", maNhanVien"+maNhanVien+", tenNhanVien"+tenNhanvien+", sdt"+sdt+", diaChi"+diaChi+", ngaySinh"+ngaySinh+", matKhau"+matKhau+", trangThai"+trangThai+'}';
     }
+
+    public void add(String trim) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

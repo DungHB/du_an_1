@@ -5,6 +5,8 @@
 package view;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.NguoiDung;
@@ -24,10 +26,10 @@ public class QuanLyView extends javax.swing.JFrame {
     public QuanLyView() {
         initComponents();
         setLocationRelativeTo(null);
-        fillToTable();
+        fillToTable(ListNV);
     }
 
-    void fillToTable() {
+    void fillToTable(List<NguoiDung> list) {
         model = (DefaultTableModel) tbl_ThongTinNhanVien.getModel();
         model.setRowCount(0);
         for (NguoiDung nguoidung : nguoiDung.getAll()) {
@@ -40,7 +42,6 @@ public class QuanLyView extends javax.swing.JFrame {
                 nguoidung.getNgaySinh(),
                 nguoidung.getGioiTinh(),
                 nguoidung.getMatKhau(),
-                nguoidung.getTenChucVu(),
                 nguoidung.getTrangThai()
             });
         }
@@ -64,7 +65,7 @@ public class QuanLyView extends javax.swing.JFrame {
         } else {
             rb_diLam.setSelected(true);
         }
-        
+
     }
 
     NguoiDung readFrom() {
@@ -88,40 +89,40 @@ public class QuanLyView extends javax.swing.JFrame {
         }
         return new NguoiDung(maNhanvien, TenNhanvien, sdt, diaChi, ngaySinh, gioiTinh, matKhau, TenChucvu, trangThai);
     }
-    public void Find() {
+
+    public void tim() {
         try {
-            String masv = JOptionPane.showInputDialog("Nhập Mã NV cần tìm: ");
-            boolean isOk = false;
-            for (NguoiDung nguoiDung : ListNV) {
-                if (nguoiDung.getMaNhanVien().equalsIgnoreCase(masv)) {
-                    index = ListNV.indexOf(nguoiDung);
+            String ten = txt_keyWord1.getText().trim();
+            boolean isok = false;
+            for (NguoiDung nguoiDung1 : ListNV) {
+                if (nguoiDung.timTheoTen(ten).isEmpty()) {
+                    JOptionPane.showMessageDialog(this, "Đã tìm thấy");
+                    index = ListNV.indexOf(ListNV);
                     showDetail(index);
-                    isOk = true;
+                    isok = true;
                     break;
+                } else {
+                    JOptionPane.showMessageDialog(this, "Không tìm thấy");
                 }
-            }
-            if (!isOk) {
-                JOptionPane.showMessageDialog(this, "Không tìm thấy nhân viên có Mã: " + masv);
-            } else {
-                JOptionPane.showMessageDialog(this, "Tìm thấy có nhân viên với Mã: " + masv);
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Lỗi: " + e.getMessage());
         }
     }
-       private void Prev() {
+
+    private void Prev() {
         if (index > 0) {
             index--;
             showDetail(index);
         }
     }
+
     private void Next() {
         if (index < ListNV.size() - 1) {
             index++;
             showDetail(index);
         }
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -1636,7 +1637,14 @@ public class QuanLyView extends javax.swing.JFrame {
 
     private void btn_themNhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_themNhanVienMouseClicked
         // TODO add your handling code here:
-        
+      Vector v = new Vector<>();
+      v.add(txt_MaNhanVien.getText().trim());
+      v.add(txt_TenNhanVien.getText().trim());
+      v.add(txt_SodienThoai.getText().trim());
+      v.add(txt_DiaChi.getText().trim());
+      v.add(txt_Ngaysinh.getText().trim());
+      v.add(txt_Matkhau.getText().trim());
+      model.addRow(v);
     }//GEN-LAST:event_btn_themNhanVienMouseClicked
 
     private void tbl_ThongTinNhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_ThongTinNhanVienMouseClicked
@@ -1646,7 +1654,7 @@ public class QuanLyView extends javax.swing.JFrame {
             index = row;
             showDetail(row);
         }
-        
+
     }//GEN-LAST:event_tbl_ThongTinNhanVienMouseClicked
 
     private void btn_suaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_suaMouseClicked
@@ -1656,13 +1664,14 @@ public class QuanLyView extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Chưa chọn dòng cần sửa");
             return;
         }
-        model .setValueAt(txt_MaNhanVien.getText().trim(), row, 1);
-        model .setValueAt(txt_TenNhanVien.getText().trim(), row, 2);
-        model .setValueAt(txt_sdt.getText().trim(), row, 3);
-        model .setValueAt(txt_DiaChi.getText().trim(), row, 4);
-        model .setValueAt(txt_Ngaysinh.getText().trim(), row, 5);
-        model .setValueAt(txt_Matkhau.getText().trim(), row, 6);
-        model .setValueAt(cbb_chucVu.getSelectedItem(), row, 7);
+        
+        model.setValueAt(txt_MaNhanVien.getText().trim(), row, 1);
+        model.setValueAt(txt_TenNhanVien.getText().trim(), row, 2);
+        model.setValueAt(txt_sdt.getText().trim(), row, 3);
+        model.setValueAt(txt_DiaChi.getText().trim(), row, 4);
+        model.setValueAt(txt_Ngaysinh.getText().trim(), row, 5);
+        model.setValueAt(txt_Matkhau.getText().trim(), row, 6);
+        model.setValueAt(cbb_chucVu.getSelectedItem(), row, 7);
     }//GEN-LAST:event_btn_suaMouseClicked
 
     private void btn_prevPage1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_prevPage1MouseClicked
@@ -1677,7 +1686,7 @@ public class QuanLyView extends javax.swing.JFrame {
 
     private void btn_tim1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_tim1MouseClicked
         // TODO add your handling code here:
-        Find();
+        tim();
     }//GEN-LAST:event_btn_tim1MouseClicked
 
     /**
