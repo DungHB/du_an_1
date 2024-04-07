@@ -131,8 +131,6 @@ public class NhanVienView extends javax.swing.JFrame {
 
         jPanel13.setBackground(new java.awt.Color(153, 153, 153));
 
-        jLabel30.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinh/User.png"))); // NOI18N
-
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
         jPanel13Layout.setHorizontalGroup(
