@@ -12,16 +12,18 @@ public class NguoiDungServiceImpl {
     List<NguoiDung> list;
     java.sql.Connection con = null;
     PreparedStatement ps = null;
+    Statement stm = null;
     ResultSet rs = null;
     String sql = null;
 
     public List<NguoiDung> getAll() {
         list = new ArrayList<>();
+        list.clear();
         sql = "select * from NguoiDung";
         try {
             con = DbConnect.getConnection();
-            ps = con.prepareStatement(sql);
-            rs = ps.executeQuery();
+            stm = con.createStatement();
+            rs =stm.executeQuery(sql);
             while (rs.next()) {
                 NguoiDung ND = new NguoiDung();
                 ND.setIdNguoiDung(rs.getInt(1));
@@ -29,8 +31,8 @@ public class NguoiDungServiceImpl {
                 ND.setTenNguoiDung(rs.getString(3));
                 ND.setSdt(rs.getString(4));
                 ND.setDiaChi(rs.getString(5));
-                ND.setNgaySinh(rs.getString(7));
-                ND.setGioiTinh(rs.getBoolean(6));
+                ND.setNgaySinh(rs.getString(6));
+                ND.setGioiTinh(rs.getBoolean(7));
                 ND.setMatKhau(rs.getString(8));
                 ND.setIdChucVu(rs.getInt(9));
                 ND.setTrangThai(rs.getBoolean(10));

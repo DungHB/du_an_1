@@ -4,7 +4,7 @@ import java.sql.*;
 
 public class DbConnect {
 
-    static String url = "jdbc:sqlserver://;serverName=localhost;databaseName=Duan_1;encrypt=true;trustServerCertificate=true";
+    static String url = "jdbc:sqlserver://;serverName=localhost;databaseName=Du_an_1;encrypt=true;trustServerCertificate=true";
     static String username = "sa";
     static String password = "123";
 

@@ -26,7 +26,7 @@ public class QuanLyView extends javax.swing.JFrame {
     public QuanLyView() {
         initComponents();
         setLocationRelativeTo(null);
-        fillToTable(ListND);
+        fillToTable(nguoiDung.getAll());
     }
 
     void fillToTable(List<NguoiDung> list) {
@@ -40,10 +40,10 @@ public class QuanLyView extends javax.swing.JFrame {
                 nguoidung.getSdt(),
                 nguoidung.getDiaChi(),
                 nguoidung.getNgaySinh(),
-                nguoidung.isGioiTinh(),
-                nguoidung.getMatKhau(),
+                nguoidung.isGioiTinh() ? "Nam" : " Nữ",
                 nguoidung.getIdChucVu(),
-                nguoidung.isTrangThai()
+                nguoidung.getMatKhau(),    
+                nguoidung.isTrangThai() ? "Đi làm" : "Đã nghỉ"
             });
         }
     }
@@ -54,19 +54,20 @@ public class QuanLyView extends javax.swing.JFrame {
         txt_SodienThoai.setText(nguoiDung.getAll().get(index).getSdt());
         txt_DiaChi.setText(nguoiDung.getAll().get(index).getDiaChi());
         txt_Ngaysinh.setText(nguoiDung.getAll().get(index).getNgaySinh());
-        if ("Nam".equals(nguoiDung.getAll().get(index).isGioiTinh())) {
+        if (nguoiDung.getAll().get(index).isGioiTinh() == true) {
             rb_nam1.setSelected(true);
         } else {
             rb_nu1.setSelected(true);
         }
         txt_Matkhau.setText(nguoiDung.getAll().get(index).getMatKhau());
-        cbb_chucVu.setSelectedItem(nguoiDung.getAll().get(index).getIdChucVu());
-        if ("Đã nghỉ".equals(nguoiDung.getAll().get(index).isTrangThai())) {
+        cbb_chucVu.setSelectedIndex(nguoiDung.getAll().get(index).getIdChucVu()+1);
+        if (nguoiDung.getAll().get(index).isTrangThai() == true) {
             rb_daNghi.setSelected(true);
         } else {
             rb_diLam.setSelected(true);
-        }
-
+        };
+        
+        tbl_ThongTinNhanVien.setRowSelectionInterval(index, index);
     }
 
 //    public void tim() {
@@ -88,18 +89,18 @@ public class QuanLyView extends javax.swing.JFrame {
 //            JOptionPane.showMessageDialog(this, "Lỗi: " + e.getMessage());
 //        }
 //    }
-
     private void Prev() {
         int row = tbl_ThongTinNhanVien.getSelectedRow();
         index--;
-        showDetail(row);
+        showDetail(index);
     }
 
     private void Next() {
         int row = tbl_ThongTinNhanVien.getSelectedRow();
-            index++;
-            showDetail(row);
+        index++;
+        showDetail(index);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -1107,6 +1108,11 @@ public class QuanLyView extends javax.swing.JFrame {
                 btn_tim1MouseClicked(evt);
             }
         });
+        btn_tim1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_tim1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
         jPanel16.setLayout(jPanel16Layout);
@@ -1614,14 +1620,32 @@ public class QuanLyView extends javax.swing.JFrame {
 
     private void btn_themNhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_themNhanVienMouseClicked
         // TODO add your handling code here:
-      Vector v = new Vector<>();
-      v.add(txt_MaNhanVien.getText().trim());
-      v.add(txt_TenNhanVien.getText().trim());
-      v.add(txt_SodienThoai.getText().trim());
-      v.add(txt_DiaChi.getText().trim());
-      v.add(txt_Ngaysinh.getText().trim());
-      v.add(txt_Matkhau.getText().trim());
-      model.addRow(v);
+        int i = tbl_ThongTinNhanVien.getRowCount();
+        Vector v = new Vector<>();
+        String gioiTinh = "";
+        if (rb_nam1.isSelected()) {
+            gioiTinh = "Nam";
+        } else {
+            gioiTinh = "Nữ";
+        }
+        String trangThai = "";
+        if (rb_diLam.isSelected()) {
+            trangThai = "Đi làm";
+        } else {
+            trangThai = "Đã nghỉ";
+        }
+        String chucVu = cbb_chucVu.getSelectedItem().toString();
+        v.add(i + 1 + "");
+        v.add(txt_MaNhanVien.getText().trim());
+        v.add(txt_TenNhanVien.getText().trim());
+        v.add(txt_SodienThoai.getText().trim());
+        v.add(txt_DiaChi.getText().trim());
+        v.add(gioiTinh);
+        v.add(txt_Ngaysinh.getText().trim());
+        v.add(chucVu);
+        v.add(txt_Matkhau.getText().trim());
+        v.add(trangThai);
+        model.addRow(v);
     }//GEN-LAST:event_btn_themNhanVienMouseClicked
 
     private void tbl_ThongTinNhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_ThongTinNhanVienMouseClicked
@@ -1636,14 +1660,27 @@ public class QuanLyView extends javax.swing.JFrame {
     private void btn_suaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_suaMouseClicked
         // TODO add your handling code here:
         int row = tbl_ThongTinNhanVien.getSelectedRow();
+        String gioiTinh = "";
+        if (rb_nam1.isSelected()) {
+            gioiTinh = "Nam";
+        } else {
+            gioiTinh = "Nữ";
+        }
+        String trangThai = "";
+        if (rb_diLam.isSelected()) {
+            trangThai = "Đi làm";
+        } else {
+            trangThai = "Đã nghỉ";
+        }
+        String chucVu = cbb_chucVu.getSelectedItem().toString();
         if (row < 0) {
             JOptionPane.showMessageDialog(this, "Chưa chọn dòng cần sửa");
             return;
         }
-        
+
         model.setValueAt(txt_MaNhanVien.getText().trim(), row, 1);
         model.setValueAt(txt_TenNhanVien.getText().trim(), row, 2);
-        model.setValueAt(txt_sdt.getText().trim(), row, 3);
+        model.setValueAt(txt_SodienThoai.getText().trim(), row, 3);
         model.setValueAt(txt_DiaChi.getText().trim(), row, 4);
         model.setValueAt(txt_Ngaysinh.getText().trim(), row, 5);
         model.setValueAt(txt_Matkhau.getText().trim(), row, 6);
@@ -1664,6 +1701,10 @@ public class QuanLyView extends javax.swing.JFrame {
         // TODO add your handling code here:
 //        tim();
     }//GEN-LAST:event_btn_tim1MouseClicked
+
+    private void btn_tim1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_tim1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_tim1ActionPerformed
 
     /**
      * @param args the command line arguments

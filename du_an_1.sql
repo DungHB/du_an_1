@@ -18,11 +18,19 @@ TenNhanVien Nvarchar(30),
 Sdt varchar (15),
 DiaChi Nvarchar(50),
 NgaySinh date,
-GioiTinh Nvarchar(10),
+GioiTinh bit,
 MatKhau varchar(100),
 IdChucVu int,
-TrangThai Nvarchar(50)
+TrangThai bit,
 )
+
+Insert into NguoiDung(MaNguoiDung,TenNhanVien,  Sdt, DiaChi, NgaySinh, GioiTinh, MatKhau, IdChucVu, TrangThai) VALUES
+('NV001', N'Hoàng Văn Trí', '0559577371', N'54 Hoàng Ngân', '2003-1-17', 1, N'nv123', 2,0),
+('QL001', N'Đào Duy Hà', '0826263688', N'21 Trần Duy Hưng', '2003-1-17', 1, N'ql123', 1,0),
+('NV002', N'Bùi Thị Hân', '0826263680', N'43 Nguyễn Chí Thanh', '2003-1-17', 0, N'nv123', 2, 1),
+('NV003', N'Trần Thu Vy', '0926243680', N'12 Hoàng Cầu', '2003-1-17', 0, N'nv123', 2,0)
+Select * from NguoiDung
+drop table NguoiDung
 
 CREATE TABLE ThuongHieu(
 IdThuongHieu int  identity(1,1) primary key,
