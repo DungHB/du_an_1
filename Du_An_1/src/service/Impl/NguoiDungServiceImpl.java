@@ -34,7 +34,7 @@ public class NguoiDungServiceImpl {
                 ND.setNgaySinh(rs.getString(6));
                 ND.setGioiTinh(rs.getBoolean(7));
                 ND.setMatKhau(rs.getString(8));
-                ND.setIdChucVu(rs.getInt(9));
+                ND.setchucVu(rs.getString(9));
                 ND.setTrangThai(rs.getBoolean(10));
                 list.add(ND);
             }
@@ -63,7 +63,7 @@ public class NguoiDungServiceImpl {
             ps.setString(6, ND.getNgaySinh());
             ps.setBoolean(7, ND.isGioiTinh());
             ps.setString(8, ND.getMatKhau());
-            ps.setInt(9, ND.getIdChucVu());
+            ps.setString(9, ND.getchucVu());
             ps.setBoolean(10, ND.isTrangThai());
             if(ps.executeUpdate() > 0){
                 System.out.println("Thêm thành công");
@@ -88,7 +88,7 @@ public class NguoiDungServiceImpl {
             ps.setString(6, nd.getNgaySinh());
             ps.setBoolean(7, nd.isGioiTinh());
             ps.setString(8, nd.getMatKhau());
-            ps.setInt(9, nd.getIdChucVu());
+            ps.setString(9, nd.getchucVu());
             ps.setBoolean(10, nd.isTrangThai());
             ps.setString(11, ma);
             return ps.executeUpdate();
@@ -115,7 +115,7 @@ public class NguoiDungServiceImpl {
                 ND.setNgaySinh(rs.getString(7));
                 ND.setGioiTinh(rs.getBoolean(6));
                 ND.setMatKhau(rs.getString(8));
-                ND.setIdChucVu(rs.getInt(9));
+                ND.setchucVu(rs.getString(9));
                 ND.setTrangThai(rs.getBoolean(10));
             }
         } catch (Exception e) {

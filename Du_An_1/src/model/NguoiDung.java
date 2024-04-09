@@ -2,6 +2,10 @@ package model;
 
 public class NguoiDung {
 
+    public static int size() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     private int idNguoiDung;
     private String maNguoiDung;
     private String tenNguoiDung;
@@ -10,13 +14,13 @@ public class NguoiDung {
     private String ngaySinh;
     private boolean gioiTinh;
     private String matKhau;
-    private int idChucVu;
+    private String chucVu;
     private boolean trangThai;
 
     public NguoiDung() {
     }
 
-    public NguoiDung(int idNguoiDung, String maNguoiDung, String tenNguoiDung, String sdt, String diaChi, String ngaySinh, boolean gioiTinh, String matKhau, int idChucVu, boolean trangThai) {
+    public NguoiDung(int idNguoiDung, String maNguoiDung, String tenNguoiDung, String sdt, String diaChi, String ngaySinh, boolean gioiTinh, String matKhau, String chucVu, boolean trangThai) {
         this.idNguoiDung = idNguoiDung;
         this.maNguoiDung = maNguoiDung;
         this.tenNguoiDung = tenNguoiDung;
@@ -25,7 +29,7 @@ public class NguoiDung {
         this.ngaySinh = ngaySinh;
         this.gioiTinh = gioiTinh;
         this.matKhau = matKhau;
-        this.idChucVu = idChucVu;
+        this.chucVu = chucVu;
         this.trangThai = trangThai;
     }
 
@@ -93,12 +97,12 @@ public class NguoiDung {
         this.matKhau = matKhau;
     }
 
-    public int getIdChucVu() {
-        return idChucVu;
+    public String getchucVu() {
+        return chucVu;
     }
 
-    public void setIdChucVu(int idChucVu) {
-        this.idChucVu = idChucVu;
+    public void setchucVu(String chucVu) {
+        this.chucVu = chucVu;
     }
 
     public boolean isTrangThai() {

@@ -41,8 +41,8 @@ public class QuanLyView extends javax.swing.JFrame {
                 nguoidung.getDiaChi(),
                 nguoidung.isGioiTinh() ? "Nam" : " Nữ",
                 nguoidung.getNgaySinh(),
-                nguoidung.getIdChucVu(),
-                nguoidung.getMatKhau(),    
+                nguoidung.getchucVu(),
+                nguoidung.getMatKhau(),
                 nguoidung.isTrangThai() ? "Đi làm" : "Đã nghỉ"
             });
         }
@@ -60,35 +60,45 @@ public class QuanLyView extends javax.swing.JFrame {
             rb_nu1.setSelected(true);
         }
         txt_Matkhau.setText(nguoiDung.getAll().get(index).getMatKhau());
-        cbb_chucVu.setSelectedIndex(nguoiDung.getAll().get(index).getIdChucVu()+1);
+        cbb_chucVu.setSelectedItem(nguoiDung.getAll().get(index).getchucVu() + 1);
         if (nguoiDung.getAll().get(index).isTrangThai() == true) {
             rb_daNghi.setSelected(true);
         } else {
             rb_diLam.setSelected(true);
         };
-        
+
         tbl_ThongTinNhanVien.setRowSelectionInterval(index, index);
     }
 
-//    public void tim() {
-//        try {
-//            String ten = txt_keyWord1.getText().trim();
-//            boolean isok = false;
-//            for (NguoiDung nguoiDung : ListNV) {
-//                if (nguoiDung.findTen(ten).equals(ten)) {
-//                    JOptionPane.showMessageDialog(this, "Đã tìm thấy");
-//                    index = ListNV.indexOf(ListNV);
-//                    showDetail(index);
-//                    isok = true;
-//                    break;
-//                } else {
-//                    JOptionPane.showMessageDialog(this, "Không tìm thấy");
-//                }
-//            }
-//        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(this, "Lỗi: " + e.getMessage());
-//        }
-//    }
+    public boolean tim() {
+        String mand = null;
+        for (int i = 0; i < ListND.size(); i++) {
+            if (mand.equals(ListND.get(i).getMaNguoiDung())) {
+                txt_MaNhanVien.setText(nguoiDung.getAll().get(index).getMaNguoiDung());
+                txt_TenNhanVien.setText(nguoiDung.getAll().get(index).getTenNguoiDung());
+                txt_SodienThoai.setText(nguoiDung.getAll().get(index).getSdt());
+                txt_DiaChi.setText(nguoiDung.getAll().get(index).getDiaChi());
+                txt_Ngaysinh.setText(nguoiDung.getAll().get(index).getNgaySinh());
+                if (nguoiDung.getAll().get(index).isGioiTinh() == true) {
+                    rb_nam1.setSelected(true);
+                } else {
+                    rb_nu1.setSelected(true);
+                }
+                txt_Matkhau.setText(nguoiDung.getAll().get(index).getMatKhau());
+                cbb_chucVu.setSelectedItem(nguoiDung.getAll().get(index).getchucVu() + 1);
+                if (nguoiDung.getAll().get(index).isTrangThai() == true) {
+                    rb_daNghi.setSelected(true);
+                } else {
+                    rb_diLam.setSelected(true);
+                }
+                 int row = tbl_ThongTinNhanVien.getSelectedRow();
+                return true;
+            }
+        }
+        System.out.println("Không tìm thấy mã người dùng : " + mand);
+        return false;
+    }
+
     private void Prev() {
         int row = tbl_ThongTinNhanVien.getSelectedRow();
         index--;
@@ -1108,11 +1118,6 @@ public class QuanLyView extends javax.swing.JFrame {
                 btn_tim1MouseClicked(evt);
             }
         });
-        btn_tim1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_tim1ActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
         jPanel16.setLayout(jPanel16Layout);
@@ -1682,9 +1687,11 @@ public class QuanLyView extends javax.swing.JFrame {
         model.setValueAt(txt_TenNhanVien.getText().trim(), row, 2);
         model.setValueAt(txt_SodienThoai.getText().trim(), row, 3);
         model.setValueAt(txt_DiaChi.getText().trim(), row, 4);
-        model.setValueAt(txt_Ngaysinh.getText().trim(), row, 5);
-        model.setValueAt(txt_Matkhau.getText().trim(), row, 6);
+        model.setValueAt(gioiTinh, row, 5);
+        model.setValueAt(txt_Ngaysinh.getText().trim(), row, 6);
+        model.setValueAt(txt_Matkhau.getText().trim(), row, 8);
         model.setValueAt(cbb_chucVu.getSelectedItem(), row, 7);
+        model.setValueAt(trangThai, row, 9);
     }//GEN-LAST:event_btn_suaMouseClicked
 
     private void btn_prevPage1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_prevPage1MouseClicked
@@ -1699,12 +1706,8 @@ public class QuanLyView extends javax.swing.JFrame {
 
     private void btn_tim1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_tim1MouseClicked
         // TODO add your handling code here:
-//        tim();
+        tim();
     }//GEN-LAST:event_btn_tim1MouseClicked
-
-    private void btn_tim1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_tim1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_tim1ActionPerformed
 
     /**
      * @param args the command line arguments
