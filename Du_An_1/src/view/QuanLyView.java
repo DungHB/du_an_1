@@ -39,8 +39,8 @@ public class QuanLyView extends javax.swing.JFrame {
                 nguoidung.getTenNguoiDung(),
                 nguoidung.getSdt(),
                 nguoidung.getDiaChi(),
-                nguoidung.getNgaySinh(),
                 nguoidung.isGioiTinh() ? "Nam" : " Nữ",
+                nguoidung.getNgaySinh(),
                 nguoidung.getIdChucVu(),
                 nguoidung.getMatKhau(),    
                 nguoidung.isTrangThai() ? "Đi làm" : "Đã nghỉ"
