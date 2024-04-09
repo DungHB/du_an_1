@@ -38,6 +38,7 @@ public class QuanLyView extends javax.swing.JFrame {
         btnQuanLyNhanVien = new javax.swing.JButton();
         btnQuanLyVoucher = new javax.swing.JButton();
         btnTrangChu = new javax.swing.JButton();
+        btnThongKe = new javax.swing.JButton();
         btnDangXuat = new javax.swing.JButton();
         formQuanLy = new javax.swing.JPanel();
         formTrangChu = new javax.swing.JPanel();
@@ -182,6 +183,7 @@ public class QuanLyView extends javax.swing.JFrame {
         btn_timKiem = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         tbl_dsGioHang = new javax.swing.JTable();
+        formThongKe = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -256,6 +258,14 @@ public class QuanLyView extends javax.swing.JFrame {
             }
         });
 
+        btnThongKe.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        btnThongKe.setText("Thống Kê");
+        btnThongKe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThongKeActionPerformed(evt);
+            }
+        });
+
         btnDangXuat.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         btnDangXuat.setText("Đăng Xuất");
         btnDangXuat.addActionListener(new java.awt.event.ActionListener() {
@@ -278,11 +288,12 @@ public class QuanLyView extends javax.swing.JFrame {
                     .addComponent(btnQuanLyNhanVien, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnQuanLyVoucher, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnTrangChu, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDangXuat))
+                    .addComponent(btnDangXuat)
+                    .addComponent(btnThongKe))
                 .addContainerGap())
         );
 
-        jPanel31Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnDangXuat, btnQuanLyHoaDon, btnQuanLyKhachHang, btnQuanLyNhanVien, btnQuanLySanPham, btnQuanLyVoucher, btnTrangChu});
+        jPanel31Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnDangXuat, btnQuanLyHoaDon, btnQuanLyKhachHang, btnQuanLyNhanVien, btnQuanLySanPham, btnQuanLyVoucher, btnThongKe, btnTrangChu});
 
         jPanel31Layout.setVerticalGroup(
             jPanel31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -301,12 +312,14 @@ public class QuanLyView extends javax.swing.JFrame {
                 .addComponent(btnQuanLyHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnQuanLyVoucher, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnThongKe)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addComponent(btnDangXuat)
-                .addContainerGap(76, Short.MAX_VALUE))
+                .addGap(20, 20, 20))
         );
 
-        jPanel31Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnDangXuat, btnQuanLyHoaDon, btnQuanLyKhachHang, btnQuanLyNhanVien, btnQuanLySanPham, btnQuanLyVoucher, btnTrangChu});
+        jPanel31Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnDangXuat, btnQuanLyHoaDon, btnQuanLyKhachHang, btnQuanLyNhanVien, btnQuanLySanPham, btnQuanLyVoucher, btnThongKe, btnTrangChu});
 
         formQuanLy.setLayout(new java.awt.CardLayout());
 
@@ -1482,6 +1495,19 @@ public class QuanLyView extends javax.swing.JFrame {
 
         formQuanLy.add(formQuanLyHoaDon, "card5");
 
+        javax.swing.GroupLayout formThongKeLayout = new javax.swing.GroupLayout(formThongKe);
+        formThongKe.setLayout(formThongKeLayout);
+        formThongKeLayout.setHorizontalGroup(
+            formThongKeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1088, Short.MAX_VALUE)
+        );
+        formThongKeLayout.setVerticalGroup(
+            formThongKeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 750, Short.MAX_VALUE)
+        );
+
+        formQuanLy.add(formThongKe, "card7");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -1560,6 +1586,14 @@ public class QuanLyView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnDangXuatActionPerformed
 
+    private void btnThongKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThongKeActionPerformed
+        // TODO add your handling code here:
+        formQuanLy.removeAll();
+        formQuanLy.add(formThongKe);
+        formQuanLy.repaint();
+        formQuanLy.revalidate();
+    }//GEN-LAST:event_btnThongKeActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1602,6 +1636,7 @@ public class QuanLyView extends javax.swing.JFrame {
     private javax.swing.JButton btnQuanLyNhanVien;
     private javax.swing.JButton btnQuanLySanPham;
     private javax.swing.JButton btnQuanLyVoucher;
+    private javax.swing.JButton btnThongKe;
     private javax.swing.JButton btnTrangChu;
     private javax.swing.JButton btn_nextPage;
     private javax.swing.JButton btn_nextPage1;
@@ -1636,6 +1671,7 @@ public class QuanLyView extends javax.swing.JFrame {
     private javax.swing.JPanel formQuanLyKhachHang;
     private javax.swing.JPanel formQuanLyNhanVien;
     private javax.swing.JPanel formQuanLySanPham;
+    private javax.swing.JPanel formThongKe;
     private javax.swing.JPanel formTrangChu;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
