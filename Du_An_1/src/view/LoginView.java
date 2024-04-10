@@ -4,7 +4,7 @@
  */
 package view;
 
-import Model.Login;
+import model.Login;
 import javax.swing.JOptionPane;
 import service.Impl.LoginService;
 
