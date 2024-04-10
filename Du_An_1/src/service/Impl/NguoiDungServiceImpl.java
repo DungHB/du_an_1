@@ -97,14 +97,15 @@ public class NguoiDungServiceImpl {
             return 0;
         }
     }
-    public NguoiDung findTen(String tenNhanVien) throws SQLException {
-        rs = null;
-        ps = null;
+    public ArrayList<NguoiDung> searchNguoiDung(String ma, String tenNV) {
+        sql = "select * from NguoiDung where Roles = 'NV' and MaNguoiDung like ? or TenNguoiDung like ? and TrangThai = 1";
+        list.clear();
         try {
-            sql = "Select * from NguoiDung Where =" + tenNhanVien;
             con = DbConnect.getConnection();
             ps = con.prepareStatement(sql);
-            rs = ps.executeQuery();
+            ps.setString(1, "%" + ma + "%");
+            ps.setString(2, "%" + tenNV + "%");
+            rs = stm.executeQuery(tenNV);
             while (rs.next()) {
                 NguoiDung ND = new NguoiDung();
                 ND.setIdNguoiDung(rs.getInt(1));
@@ -112,16 +113,16 @@ public class NguoiDungServiceImpl {
                 ND.setTenNguoiDung(rs.getString(3));
                 ND.setSdt(rs.getString(4));
                 ND.setDiaChi(rs.getString(5));
-                ND.setNgaySinh(rs.getString(7));
-                ND.setGioiTinh(rs.getBoolean(6));
+                ND.setNgaySinh(rs.getString(6));
+                ND.setGioiTinh(rs.getBoolean(7));
                 ND.setMatKhau(rs.getString(8));
                 ND.setchucVu(rs.getString(9));
                 ND.setTrangThai(rs.getBoolean(10));
+                list.add(ND);
             }
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
         }
-        return null;
+        return (ArrayList<NguoiDung>) list;
     }
 }
