@@ -70,33 +70,27 @@ public class QuanLyView extends javax.swing.JFrame {
         tbl_ThongTinNhanVien.setRowSelectionInterval(index, index);
     }
 
-    public boolean tim() {
-        String mand = null;
-        for (int i = 0; i < ListND.size(); i++) {
-            if (mand.equals(ListND.get(i).getMaNguoiDung())) {
-                txt_MaNhanVien.setText(nguoiDung.getAll().get(index).getMaNguoiDung());
-                txt_TenNhanVien.setText(nguoiDung.getAll().get(index).getTenNguoiDung());
-                txt_SodienThoai.setText(nguoiDung.getAll().get(index).getSdt());
-                txt_DiaChi.setText(nguoiDung.getAll().get(index).getDiaChi());
-                txt_Ngaysinh.setText(nguoiDung.getAll().get(index).getNgaySinh());
-                if (nguoiDung.getAll().get(index).isGioiTinh() == true) {
-                    rb_nam1.setSelected(true);
-                } else {
-                    rb_nu1.setSelected(true);
-                }
-                txt_Matkhau.setText(nguoiDung.getAll().get(index).getMatKhau());
-                cbb_chucVu.setSelectedItem(nguoiDung.getAll().get(index).getchucVu() + 1);
-                if (nguoiDung.getAll().get(index).isTrangThai() == true) {
-                    rb_daNghi.setSelected(true);
-                } else {
-                    rb_diLam.setSelected(true);
-                }
-                 int row = tbl_ThongTinNhanVien.getSelectedRow();
-                return true;
-            }
-        }
-        System.out.println("Không tìm thấy mã người dùng : " + mand);
-        return false;
+    public void tim() {
+//        String searchMa = txt_SearchNV.getText();
+//        String searchTen = txt_SearchNV.getText();
+//        ArrayList<NguoiDung> listSearchNV = searchN(searchMa, searchTen);
+//        if (searchMa.isEmpty()) {
+//            JOptionPane.showMessageDialog(this, "Vui lòng nhập mã người dùng hoặc họ tên người dùng");
+//        } else {
+//            if (listSearchNV.isEmpty()) {
+//                JOptionPane.showMessageDialog(this, "Không tồn tại nhân viên này");
+//                txt_SearchNV.setText("");
+//                txt_MaNhanVien.setText("");
+//                txt_TenNhanVien.setText("");
+//                txt_SodienThoai.setText("");
+//                txt_DiaChi.setText("");
+//                txt_Ngaysinh.setText("");
+//                txt_Matkhau.setText("");
+//                txt_Matkhau.setText("");
+//            } else {
+//                loadDataNhanVien(ser.searchNhanVien(searchMa, searchTen));
+//            }
+//        }
     }
 
     private void Prev() {
@@ -225,7 +219,7 @@ public class QuanLyView extends javax.swing.JFrame {
         tbl_ThongTinNhanVien = new javax.swing.JTable();
         btn_nextPage1 = new javax.swing.JButton();
         btn_prevPage1 = new javax.swing.JButton();
-        txt_keyWord1 = new javax.swing.JTextField();
+        txt_SearchNV = new javax.swing.JTextField();
         btn_tim1 = new javax.swing.JButton();
         formQuanLyKhachHang = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
@@ -1127,7 +1121,7 @@ public class QuanLyView extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel21)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txt_keyWord1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txt_SearchNV, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btn_tim1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 191, Short.MAX_VALUE)
@@ -1145,7 +1139,7 @@ public class QuanLyView extends javax.swing.JFrame {
                     .addComponent(jLabel21)
                     .addComponent(btn_nextPage1)
                     .addComponent(btn_prevPage1)
-                    .addComponent(txt_keyWord1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_SearchNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_tim1))
                 .addGap(12, 12, 12)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE))
@@ -1682,8 +1676,7 @@ public class QuanLyView extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Chưa chọn dòng cần sửa");
             return;
         }
-
-        model.setValueAt(txt_MaNhanVien.getText().trim(), row, 1);
+        
         model.setValueAt(txt_TenNhanVien.getText().trim(), row, 2);
         model.setValueAt(txt_SodienThoai.getText().trim(), row, 3);
         model.setValueAt(txt_DiaChi.getText().trim(), row, 4);
@@ -1879,6 +1872,7 @@ public class QuanLyView extends javax.swing.JFrame {
     private javax.swing.JTextField txt_MaNhanVien;
     private javax.swing.JTextField txt_Matkhau;
     private javax.swing.JTextField txt_Ngaysinh;
+    private javax.swing.JTextField txt_SearchNV;
     private javax.swing.JTextField txt_SodienThoai;
     private javax.swing.JTextField txt_TenNhanVien;
     private javax.swing.JTextField txt_batDau;
@@ -1887,7 +1881,6 @@ public class QuanLyView extends javax.swing.JFrame {
     private javax.swing.JTextField txt_hoTen;
     private javax.swing.JTextField txt_ketThuc;
     private javax.swing.JTextField txt_keyWord;
-    private javax.swing.JTextField txt_keyWord1;
     private javax.swing.JTextField txt_keyWord3;
     private javax.swing.JTextField txt_keyWordSP;
     private javax.swing.JTextField txt_maHoaDon;

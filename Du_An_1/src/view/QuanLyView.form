@@ -1538,7 +1538,7 @@
                           <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                           <Component id="jLabel21" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="txt_keyWord1" min="-2" pref="148" max="-2" attributes="0"/>
+                          <Component id="txt_SearchNV" min="-2" pref="148" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="btn_tim1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace pref="191" max="32767" attributes="0"/>
@@ -1558,7 +1558,7 @@
                               <Component id="jLabel21" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="btn_nextPage1" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="btn_prevPage1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txt_keyWord1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txt_SearchNV" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="btn_tim1" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
@@ -1676,7 +1676,7 @@
                     <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btn_prevPage1MouseClicked"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JTextField" name="txt_keyWord1">
+                <Component class="javax.swing.JTextField" name="txt_SearchNV">
                 </Component>
                 <Component class="javax.swing.JButton" name="btn_tim1">
                   <Properties>
