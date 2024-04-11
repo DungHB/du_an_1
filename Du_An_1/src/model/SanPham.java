@@ -7,17 +7,19 @@ public class SanPham {
     private String tenSanPham;
     private int idTheLoai;
     private int idThuongHieu;
+    private String Theloai;
     private String trangThai;
 
     public SanPham() {
     }
 
-    public SanPham(int idSanPham, String maSanPham, String tenSanPham, int idTheLoai, int idThuongHieu, String trangThai) {
+    public SanPham(int idSanPham, String maSanPham, String tenSanPham, int idTheLoai, int idThuongHieu, String Theloai, String trangThai) {
         this.idSanPham = idSanPham;
         this.maSanPham = maSanPham;
         this.tenSanPham = tenSanPham;
         this.idTheLoai = idTheLoai;
         this.idThuongHieu = idThuongHieu;
+        this.Theloai = Theloai;
         this.trangThai = trangThai;
     }
 
@@ -61,6 +63,14 @@ public class SanPham {
         this.idThuongHieu = idThuongHieu;
     }
 
+    public String getTheloai() {
+        return Theloai;
+    }
+
+    public void setTheloai(String Theloai) {
+        this.Theloai = Theloai;
+    }
+
     public String getTrangThai() {
         return trangThai;
     }
@@ -69,4 +79,6 @@ public class SanPham {
         this.trangThai = trangThai;
     }
 
+   
+    
 }

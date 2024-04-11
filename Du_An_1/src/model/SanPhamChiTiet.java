@@ -2,141 +2,123 @@ package model;
 
 public class SanPhamChiTiet {
 
-    private int idSanPhamChiTiet;
-    private int idSanPham;
-    private int idChatLieu;
-    private int idMauSac;
-    private int idSize;
-    private double gia;
-    private int soLuong;
-    private int idLSGia;
-    private double giaBanDau;
-    private String tenSanPham;
-    private String tenChatLieu;
-    private String tenMauSac;
-    private int size;
+    
+    private String MaSPCT, MaSanPham, MaThuongHieu, MaChatLieu, MaMauSac, MaSize;
+    private String TenSanPham,TenThuongHieu,TenChatLieu,TenMauSac,Size;
+    private int SoLuong;
 
     public SanPhamChiTiet() {
     }
 
-    public SanPhamChiTiet(int idSanPhamChiTiet, int idSanPham, int idChatLieu, int idMauSac, int idSize, double gia, int soLuong, int idLSGia, double giaBanDau, String tenSanPham, String tenChatLieu, String tenMauSac, int size) {
-        this.idSanPhamChiTiet = idSanPhamChiTiet;
-        this.idSanPham = idSanPham;
-        this.idChatLieu = idChatLieu;
-        this.idMauSac = idMauSac;
-        this.idSize = idSize;
-        this.gia = gia;
-        this.soLuong = soLuong;
-        this.idLSGia = idLSGia;
-        this.giaBanDau = giaBanDau;
-        this.tenSanPham = tenSanPham;
-        this.tenChatLieu = tenChatLieu;
-        this.tenMauSac = tenMauSac;
-        this.size = size;
+    public SanPhamChiTiet(String MaSPCT, String MaSanPham, String MaThuongHieu, String MaChatLieu, String MaMauSac, String MaSize, String TenSanPham, String TenThuongHieu, String TenChatLieu, String TenMauSac, String Size, int SoLuong) {
+        this.MaSPCT = MaSPCT;
+        this.MaSanPham = MaSanPham;
+        this.MaThuongHieu = MaThuongHieu;
+        this.MaChatLieu = MaChatLieu;
+        this.MaMauSac = MaMauSac;
+        this.MaSize = MaSize;
+        this.TenSanPham = TenSanPham;
+        this.TenThuongHieu = TenThuongHieu;
+        this.TenChatLieu = TenChatLieu;
+        this.TenMauSac = TenMauSac;
+        this.Size = Size;
+        this.SoLuong = SoLuong;
     }
 
-    public int getIdSanPhamChiTiet() {
-        return idSanPhamChiTiet;
+    public String getMaSPCT() {
+        return MaSPCT;
     }
 
-    public void setIdSanPhamChiTiet(int idSanPhamChiTiet) {
-        this.idSanPhamChiTiet = idSanPhamChiTiet;
+    public void setMaSPCT(String MaSPCT) {
+        this.MaSPCT = MaSPCT;
     }
 
-    public int getIdSanPham() {
-        return idSanPham;
+    public String getMaSanPham() {
+        return MaSanPham;
     }
 
-    public void setIdSanPham(int idSanPham) {
-        this.idSanPham = idSanPham;
+    public void setMaSanPham(String MaSanPham) {
+        this.MaSanPham = MaSanPham;
     }
 
-    public int getIdChatLieu() {
-        return idChatLieu;
+    public String getMaThuongHieu() {
+        return MaThuongHieu;
     }
 
-    public void setIdChatLieu(int idChatLieu) {
-        this.idChatLieu = idChatLieu;
+    public void setMaThuongHieu(String MaThuongHieu) {
+        this.MaThuongHieu = MaThuongHieu;
     }
 
-    public int getIdMauSac() {
-        return idMauSac;
+    public String getMaChatLieu() {
+        return MaChatLieu;
     }
 
-    public void setIdMauSac(int idMauSac) {
-        this.idMauSac = idMauSac;
+    public void setMaChatLieu(String MaChatLieu) {
+        this.MaChatLieu = MaChatLieu;
     }
 
-    public int getIdSize() {
-        return idSize;
+    public String getMaMauSac() {
+        return MaMauSac;
     }
 
-    public void setIdSize(int idSize) {
-        this.idSize = idSize;
+    public void setMaMauSac(String MaMauSac) {
+        this.MaMauSac = MaMauSac;
     }
 
-    public double getGia() {
-        return gia;
+    public String getMaSize() {
+        return MaSize;
     }
 
-    public void setGia(double gia) {
-        this.gia = gia;
-    }
-
-    public int getSoLuong() {
-        return soLuong;
-    }
-
-    public void setSoLuong(int soLuong) {
-        this.soLuong = soLuong;
-    }
-
-    public int getIdLSGia() {
-        return idLSGia;
-    }
-
-    public void setIdLSGia(int idLSGia) {
-        this.idLSGia = idLSGia;
-    }
-
-    public double getGiaBanDau() {
-        return giaBanDau;
-    }
-
-    public void setGiaBanDau(double giaBanDau) {
-        this.giaBanDau = giaBanDau;
+    public void setMaSize(String MaSize) {
+        this.MaSize = MaSize;
     }
 
     public String getTenSanPham() {
-        return tenSanPham;
+        return TenSanPham;
     }
 
-    public void setTenSanPham(String tenSanPham) {
-        this.tenSanPham = tenSanPham;
+    public void setTenSanPham(String TenSanPham) {
+        this.TenSanPham = TenSanPham;
+    }
+
+    public String getTenThuongHieu() {
+        return TenThuongHieu;
+    }
+
+    public void setTenThuongHieu(String TenThuongHieu) {
+        this.TenThuongHieu = TenThuongHieu;
     }
 
     public String getTenChatLieu() {
-        return tenChatLieu;
+        return TenChatLieu;
     }
 
-    public void setTenChatLieu(String tenChatLieu) {
-        this.tenChatLieu = tenChatLieu;
+    public void setTenChatLieu(String TenChatLieu) {
+        this.TenChatLieu = TenChatLieu;
     }
 
     public String getTenMauSac() {
-        return tenMauSac;
+        return TenMauSac;
     }
 
-    public void setTenMauSac(String tenMauSac) {
-        this.tenMauSac = tenMauSac;
+    public void setTenMauSac(String TenMauSac) {
+        this.TenMauSac = TenMauSac;
     }
 
-    public int getSize() {
-        return size;
+    public String getSize() {
+        return Size;
     }
 
-    public void setSize(int size) {
-        this.size = size;
+    public void setSize(String Size) {
+        this.Size = Size;
+    }
+
+    public int getSoLuong() {
+        return SoLuong;
+    }
+
+    public void setSoLuong(int SoLuong) {
+        this.SoLuong = SoLuong;
     }
 
 }

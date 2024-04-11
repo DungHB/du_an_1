@@ -2,25 +2,15 @@ package model;
 
 public class ChatLieu {
 
-    private int idChatLieu;
     private String maChatLieu;
     private String tenChatLieu;
 
     public ChatLieu() {
     }
 
-    public ChatLieu(int idChatLieu, String maChatLieu, String tenChatLieu) {
-        this.idChatLieu = idChatLieu;
+    public ChatLieu(String maChatLieu, String tenChatLieu) {
         this.maChatLieu = maChatLieu;
         this.tenChatLieu = tenChatLieu;
-    }
-
-    public int getIdChatLieu() {
-        return idChatLieu;
-    }
-
-    public void setIdChatLieu(int idChatLieu) {
-        this.idChatLieu = idChatLieu;
     }
 
     public String getMaChatLieu() {
@@ -39,4 +29,5 @@ public class ChatLieu {
         this.tenChatLieu = tenChatLieu;
     }
 
+    
 }

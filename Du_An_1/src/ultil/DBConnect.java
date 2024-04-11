@@ -8,8 +8,8 @@ public class DBConnect {
 
     public static final String HOSTNAME = "localhost";
     public static final String PORT = "1433";
-    public static final String DBNAME = "du_an_1";// Ten database trong sql
-    public static final String USERNAME = "demo";// Ten tk sql
+    public static final String DBNAME = "du_an1";// Ten database trong sql
+    public static final String USERNAME = "sa2";// Ten tk sql
     public static final String PASSWORD = "123";// MK sql
 
     /**

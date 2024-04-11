@@ -2,25 +2,15 @@ package model;
 
 public class MauSac {
 
-    private int idMauSac;
     private String maMauSac;
     private String tenMauSac;
 
     public MauSac() {
     }
 
-    public MauSac(int idMauSac, String maMauSac, String tenMauSac) {
-        this.idMauSac = idMauSac;
+    public MauSac(String maMauSac, String tenMauSac) {
         this.maMauSac = maMauSac;
         this.tenMauSac = tenMauSac;
-    }
-
-    public int getIdMauSac() {
-        return idMauSac;
-    }
-
-    public void setIdMauSac(int idMauSac) {
-        this.idMauSac = idMauSac;
     }
 
     public String getMaMauSac() {
@@ -39,4 +29,5 @@ public class MauSac {
         this.tenMauSac = tenMauSac;
     }
 
+    
 }
