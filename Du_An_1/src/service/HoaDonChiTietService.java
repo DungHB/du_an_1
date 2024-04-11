@@ -5,8 +5,10 @@ import model.*;
 
 public interface HoaDonChiTietService {
 
-    ArrayList<HoaDonChiTiet> getAllHDCT(int idHDCT);
-    ArrayList<HoaDonChiTiet> updateSoluongSPVaoHD(Integer idSP, Integer soLuong, Integer idHD);
-    ArrayList<SanPhamChiTiet> updateSPVaoHD(Integer idSP, Integer soLuong);
-    ArrayList<HoaDonChiTiet> addHDCT(HoaDonChiTiet hdct);
+    ArrayList<HDCT_LSG> getAllHDCT_LSG(String maHD);
+    ArrayList<HDCT_LSG> updateSoluongSPVaoHD(String maSPCT, Integer soLuong, String maHD);
+    ArrayList<HDCT_LSG> updateTruSoluongSPVaoHD(String maSPCT, Integer soLuong, String maHD);
+    ArrayList<SanPhamChiTiet> updateSPVaoHD(String maHD, Integer soLuong);
+    ArrayList<HDCT_LSG> addHDCT(HDCT_LSG hdct);
+    ArrayList<HDCT_LSG> deleteHDCT(String maSPCT, String maHD);
 }

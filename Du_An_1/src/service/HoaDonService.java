@@ -1,22 +1,29 @@
 package service;
 
 import java.util.ArrayList;
-import java.util.List;
 import model.HoaDon;
 
 public interface HoaDonService {
 
-    List<HoaDon> getAllHoaDon();
+    ArrayList<HoaDon> getAllHoaDon();
 
     HoaDon getRowHD(int row);
 
+    String searchMaNhanVienTheoTenDangNhap(String tenDangNhap);
+
     ArrayList<HoaDon> themHoaDon(HoaDon hd);
 
-    boolean capNhatHoaDon(HoaDon hd);
-
-    HoaDon getHoaDonByMaHoaDon(String maHoaDon);
-
-    List<HoaDon> getHoaDonByTrangThai(String trangThai);
-
-    List<HoaDon> getAllViewTable();
+    ArrayList<HoaDon> updateMaKhachHangBanHang(HoaDon hd);
+    ArrayList<HoaDon> xoaHoaDon(String maHoaDon);
+    ArrayList<HoaDon> huyHoaDon(String maHoaDon, String trangThai);
+    ArrayList<HoaDon> thanhToanApPGG(String maPGG, String maHoaDon);
+    String thanhToanHoaDon(String trangThai, String ngayHoanThanh, String maHoaDon);
+//
+//    boolean capNhatHoaDon(HoaDon hd);
+//
+//    HoaDon getHoaDonByMaHoaDon(String maHoaDon);
+//
+//    List<HoaDon> getHoaDonByTrangThai(String trangThai);
+//
+//    List<HoaDon> getAllViewTable();
 }

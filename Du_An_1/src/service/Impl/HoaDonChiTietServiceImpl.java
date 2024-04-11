@@ -10,69 +10,73 @@ import ultil.DBConnect;
 public class HoaDonChiTietServiceImpl implements HoaDonChiTietService {
 
     ArrayList<HoaDonChiTiet> listHDCT = new ArrayList<>();
+    ArrayList<HDCT_LSG> listHDCT_LSG = new ArrayList<>();
     ArrayList<SanPhamChiTiet> listSPCT = new ArrayList<>();
 
     @Override
-    public ArrayList<HoaDonChiTiet> getAllHDCT(int idHDCT) {
-        listHDCT.clear();
+    public ArrayList<HDCT_LSG> getAllHDCT_LSG(String maHD) {
+        listHDCT_LSG.clear();
         try {
-            String sql = "SELECT hdct.IdHoaDon, hdct.IdSanPhamChitiet, sp.TenSanPham, hdct.SoLuong, lsg.GiaBanDau,\n"
+            String sql = "SELECT spct.MaSanPham, sp.TenSanPham, s.Size, ms.TenMauSac, hdct.SoLuong, lsg.GiaBanDau,\n"
                     + "CASE\n"
-                    + "	WHEN lsg.NgayBatDau <= CURRENT_TIMESTAMP AND lsg.NgayKetThuc >= CURRENT_TIMESTAMP THEN lsg.GiaSau\n"
+                    + "	WHEN lsg.NgayBatDau <= CURRENT_TIMESTAMP AND lsg.NgayKetThuc >= CURRENT_TIMESTAMP THEN lsg.GiaEQuaLau\n"
                     + "	ELSE lsg.GiaBanDau\n"
                     + "END AS DonGia\n"
                     + "FROM SanPhamChiTiet spct\n"
-                    + "JOIN LichSuGia lsg ON lsg.IdSanPhamChiTiet = spct.IdSanPhamChiTiet\n"
-                    + "JOIN SanPham sp ON sp.IdSanPham= spct.IdSanPham\n"
-                    + "JOIN HoaDonChiTiet hdct ON hdct.IdSanPhamChitiet = spct.IdSanPhamChiTiet\n"
-                    + "WHERE hdct.IdHoaDonChiTiet = ?";
+                    + "JOIN LichSuGia lsg ON lsg.MaSPCT = spct.MaSPCT\n"
+                    + "JOIN SanPham sp ON sp.MaSanPham= spct.MaSanPham\n"
+                    + "JOIN HoaDonChiTiet hdct ON hdct.MaSPCT = spct.MaSPCT\n"
+                    + "JOIN Size s ON s.MaSize = spct.MaSize\n"
+                    + "JOIN MauSac ms ON ms.MaMauSac = spct.MaMauSac\n"
+                    + "where hdct.MaHoaDon = ?";
             Connection conn = DBConnect.getConnection();
             PreparedStatement stm = conn.prepareStatement(sql);
-            stm.setInt(1, idHDCT);
+            stm.setString(1, maHD);
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
-                HoaDonChiTiet hdct = new HoaDonChiTiet();
-                hdct.setIdHoaDonChiTiet(rs.getInt(1));
-                hdct.setIdSanPhamChiTiet(rs.getInt(2));
-                hdct.setTenSanPham(rs.getString(3));
-                hdct.setSoLuong(rs.getInt(4));
-                hdct.setDonGia(rs.getDouble(4));
-                hdct.setDonGiaSau(rs.getDouble(6));
-                listHDCT.add(hdct);
+                HDCT_LSG hdct_lsg = new HDCT_LSG();
+                hdct_lsg.setMaSanPham(rs.getString(1));
+                hdct_lsg.setTenSanPham(rs.getString(2));
+                hdct_lsg.setTenSize(rs.getString(3));
+                hdct_lsg.setTenMauSac(rs.getString(4));
+                hdct_lsg.setSoLuong(rs.getInt(5));
+                hdct_lsg.setDonGiaDau(rs.getDouble(6));
+                hdct_lsg.setDonGiaSau(rs.getDouble(7));
+                listHDCT_LSG.add(hdct_lsg);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return listHDCT;
+        return listHDCT_LSG;
     }
 
     @Override
-    public ArrayList<HoaDonChiTiet> updateSoluongSPVaoHD(Integer idSP, Integer soLuong, Integer idHD) {
-        listHDCT.clear();
+    public ArrayList<HDCT_LSG> updateSoluongSPVaoHD(String maSPCT, Integer soLuong, String maHD) {
+        listHDCT_LSG.clear();
         try {
-            String sql = "UPDATE HoaDonChiTiet set SoLuong = SoLuong + ? where IdHoaDon = ? and IdSanPhamChitiet = ?";
+            String sql = "UPDATE HoaDonChiTiet set SoLuong = SoLuong + ? where MaHoaDon = ? and MaSPCT = ?";
             Connection conn = DBConnect.getConnection();
             PreparedStatement stm = conn.prepareStatement(sql);
             stm.setInt(1, soLuong);
-            stm.setInt(2, idHD);
-            stm.setInt(3, idSP);
+            stm.setString(2, maHD);
+            stm.setString(3, maSPCT);
             stm.executeUpdate();
             conn.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return listHDCT;
+        return listHDCT_LSG;
     }
 
     @Override
-    public ArrayList<SanPhamChiTiet> updateSPVaoHD(Integer idSP, Integer soLuong) {
+    public ArrayList<SanPhamChiTiet> updateSPVaoHD(String maHD, Integer soLuong) {
         listSPCT.clear();
         try {
-            String sql = "UPDATE SanPhamChiTiet set SoLuong = SoLuong - ? where IdSanPhamChiTiet = ?";
+            String sql = "UPDATE SanPhamChiTiet set SoLuong = SoLuong - ? where MaSPCT = ?";
             Connection conn = DBConnect.getConnection();
             PreparedStatement stm = conn.prepareStatement(sql);
-            stm.setInt(1, idSP);
-            stm.setInt(2, soLuong);
+            stm.setInt(1, soLuong);
+            stm.setString(2, maHD);
             stm.executeUpdate();
             conn.close();
         } catch (Exception e) {
@@ -82,21 +86,54 @@ public class HoaDonChiTietServiceImpl implements HoaDonChiTietService {
     }
 
     @Override
-    public ArrayList<HoaDonChiTiet> addHDCT(HoaDonChiTiet hdct) {
-        listHDCT.clear();
+    public ArrayList<HDCT_LSG> addHDCT(HDCT_LSG hdct) {
         try {
-            String sql = "INSERT INTO HoaDonChiTiet (IdHoaDon, IdSanPhamChitiet, SoLuong) values(?,?,?)";
+            String sql = "INSERT INTO HoaDonChiTiet (MaHoaDon, MaSPCT, SoLuong) values(?,?,?)";
             Connection conn = DBConnect.getConnection();
             PreparedStatement stm = conn.prepareStatement(sql);
-            stm.setInt(1, hdct.getIdHoaDon());
-            stm.setInt(2, hdct.getIdSanPhamChiTiet());
+            stm.setString(1, hdct.getMaHoaDon());
+            stm.setString(2, hdct.getMaSanPham());
             stm.setInt(3, hdct.getSoLuong());
             stm.executeUpdate();
             conn.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return listHDCT;
+        return listHDCT_LSG;
+    }
+
+    @Override
+    public ArrayList<HDCT_LSG> updateTruSoluongSPVaoHD(String maSPCT, Integer soLuong, String maHD) {
+        listHDCT_LSG.clear();
+        try {
+            String sql = "UPDATE HoaDonChiTiet set SoLuong = SoLuong - ? where MaHoaDon = ? and MaSPCT = ?";
+            Connection conn = DBConnect.getConnection();
+            PreparedStatement stm = conn.prepareStatement(sql);
+            stm.setInt(1, soLuong);
+            stm.setString(2, maHD);
+            stm.setString(3, maSPCT);
+            stm.executeUpdate();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listHDCT_LSG;
+    }
+
+    @Override
+    public ArrayList<HDCT_LSG> deleteHDCT(String maSPCT, String maHD) {
+        String sql = "delete HoaDonChiTiet where MaHoaDon = ? and MaSPCT = ?";
+        try {
+            Connection conn = DBConnect.getConnection();
+            PreparedStatement stm = conn.prepareStatement(sql);
+            stm.setString(1, maHD);
+            stm.setString(2, maSPCT);
+            stm.executeUpdate();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listHDCT_LSG;
     }
 
 }

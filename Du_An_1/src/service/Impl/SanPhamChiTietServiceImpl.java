@@ -12,7 +12,7 @@ public class SanPhamChiTietServiceImpl implements SanPhamChiTietService {
     ArrayList<SanPhamChiTiet> list = new ArrayList<>();
 
     @Override
-    public List<SanPhamChiTiet> getAll() {
+    public ArrayList<SanPhamChiTiet> getAll() {
         list.clear();
         try {
             String sql = "SELECT spct.IdSanPhamChiTiet, TenSanPham, TenMauSac, Size, TenChatLieu, lsg.GiaBanDau, spct.SoLuong FROM SanPhamChiTiet spct\n"
@@ -26,13 +26,13 @@ public class SanPhamChiTietServiceImpl implements SanPhamChiTietService {
             ResultSet rs = stm.executeQuery(sql);
             while (rs.next()) {
                 SanPhamChiTiet spct = new SanPhamChiTiet();
-                spct.setIdSanPhamChiTiet(rs.getInt(1));
+                //spct.setIdSanPhamChiTiet(rs.getInt(1));
                 spct.setTenSanPham(rs.getString(2));
                 spct.setTenMauSac(rs.getString(3));
-                spct.setSize(rs.getInt(4));
+                //spct.setSize(rs.getInt(4));
                 spct.setTenChatLieu(rs.getString(5));
-                spct.setGia(rs.getDouble(6));
-                spct.setSoLuong(rs.getInt(7));
+                //spct.setGia(rs.getDouble(6));
+                //spct.setSoLuong(rs.getInt(7));
                 list.add(spct);
             }
             conn.close();
@@ -40,32 +40,6 @@ public class SanPhamChiTietServiceImpl implements SanPhamChiTietService {
             e.printStackTrace();
         }
         return list;
-    }
-
-    @Override
-    public Boolean themSanPhamChiTiet(SanPhamChiTiet spct) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public SanPhamChiTiet getSanPhamChiTietById(String idSPCT) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public boolean capNhatSanPhamChiTiet(SanPhamChiTiet spct) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public List<SanPhamChiTiet> getAllSanPhamChiTietViewTable(int offset, int limit) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-
-    }
-
-    @Override
-    public List<SanPhamChiTiet> getAllSanPhamChiTietViewTableSearch(String searchKeyWord) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
@@ -98,23 +72,63 @@ public class SanPhamChiTietServiceImpl implements SanPhamChiTietService {
     }
 
     @Override
-    public int getIdSPCTFromSP(int idSP) {
-        Integer idsp = null;
+    public String getMaSPCTFromSP(String maSP, String maMS) {
+        String kq = "";
         try {
-            String sql = "SELECT IdSanPhamChiTiet FROM SanPhamChiTiet\n"
-                    + "JOIN SanPham ON SanPham.IdSanPham = SanPhamChiTiet.IdSanPham\n"
-                    + "WHERE SanPham.IdSanPham = ?";
+            String sql = "SELECT MaSPCT FROM SanPhamChiTiet\n"
+                    + "JOIN SanPham ON SanPham.MaSanPham = SanPhamChiTiet.MaSanPham\n"
+                    + "WHERE SanPham.MaSanPham = ? and MaMauSac = ?";
             Connection conn = DBConnect.getConnection();
             PreparedStatement stm = conn.prepareStatement(sql);
-            stm.setInt(1, idSP);
+            stm.setString(1, maSP);
+            stm.setString(2, maMS);
             ResultSet rs = stm.executeQuery();
             if (rs.next()) {
-                idsp = rs.getInt("IdSanPhamChiTiet");
+                kq = rs.getString("MaSPCT");
             }
+            System.out.println(kq);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return idsp;
+        return kq;
+    }
+
+    @Override
+    public String getMaMSByTenMS(String tenMS) {
+        String kq = "";
+        try {
+            String sql = "select MaMauSac from MauSac where TenMauSac = ?";
+            Connection conn = DBConnect.getConnection();
+            PreparedStatement stm = conn.prepareStatement(sql);
+            stm.setString(1, tenMS);
+            ResultSet rs = stm.executeQuery();
+            if (rs.next()) {
+                kq = rs.getString("MaMauSac");
+            }
+            System.out.println(kq);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return kq;
+    }
+
+    @Override
+    public String getMaSPCTByMaSP(String maSP) {
+        String kq = "";
+        try {
+            String sql = "select MaSPCT from SanPhamChiTiet where MaSanPham = ?";
+            Connection conn = DBConnect.getConnection();
+            PreparedStatement stm = conn.prepareStatement(sql);
+            stm.setString(1, maSP);
+            ResultSet rs = stm.executeQuery();
+            if (rs.next()) {
+                kq = rs.getString("MaSPCT");
+            }
+            System.out.println(kq);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return kq;
     }
 
 }

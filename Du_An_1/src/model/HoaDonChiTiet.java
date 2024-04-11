@@ -2,96 +2,87 @@ package model;
 
 public class HoaDonChiTiet {
 
-    private int idHoaDonChiTiet;
-    private int idHoaDon;
-    private int idSanPhamChiTiet;
-    private double donGia;
-    private double donGiaSau;
-    private int soLuong;
-    private double thanhTien;
+    private String maHoaDon, ngayTao, maPGG, maNhanVien, maKhachHang, maSPCT;
+    private Integer soLuong;
+    private Double thanhTien;
     private String trangThai;
-    private String tenSanPham;
-    private int size;
-    private String mauSac;
-    private String tenChatLieu;
 
     public HoaDonChiTiet() {
     }
 
-    public HoaDonChiTiet(int idHoaDonChiTiet, int idHoaDon, int idSanPhamChiTiet, double donGia, double donGiaSau, int soLuong, double thanhTien, String trangThai, String tenSanPham, int size, String mauSac, String tenChatLieu) {
-        this.idHoaDonChiTiet = idHoaDonChiTiet;
-        this.idHoaDon = idHoaDon;
-        this.idSanPhamChiTiet = idSanPhamChiTiet;
-        this.donGia = donGia;
-        this.donGiaSau = donGiaSau;
+    public HoaDonChiTiet(String maHoaDon, String ngayTao, String maPGG, String maNhanVien, String maKhachHang, String maSPCT, Integer soLuong, Double thanhTien, String trangThai) {
+        this.maHoaDon = maHoaDon;
+        this.ngayTao = ngayTao;
+        this.maPGG = maPGG;
+        this.maNhanVien = maNhanVien;
+        this.maKhachHang = maKhachHang;
+        this.maSPCT = maSPCT;
         this.soLuong = soLuong;
         this.thanhTien = thanhTien;
         this.trangThai = trangThai;
-        this.tenSanPham = tenSanPham;
-        this.size = size;
-        this.mauSac = mauSac;
-        this.tenChatLieu = tenChatLieu;
     }
 
-    public HoaDonChiTiet(int idHoaDon, int idSanPhamChiTiet, int soLuong) {
-        this.idHoaDon = idHoaDon;
-        this.idSanPhamChiTiet = idSanPhamChiTiet;
-        this.soLuong = soLuong;
+    public String getMaHoaDon() {
+        return maHoaDon;
     }
 
-    public int getIdHoaDonChiTiet() {
-        return idHoaDonChiTiet;
+    public void setMaHoaDon(String maHoaDon) {
+        this.maHoaDon = maHoaDon;
     }
 
-    public void setIdHoaDonChiTiet(int idHoaDonChiTiet) {
-        this.idHoaDonChiTiet = idHoaDonChiTiet;
+    public String getNgayTao() {
+        return ngayTao;
     }
 
-    public int getIdHoaDon() {
-        return idHoaDon;
+    public void setNgayTao(String ngayTao) {
+        this.ngayTao = ngayTao;
     }
 
-    public void setIdHoaDon(int idHoaDon) {
-        this.idHoaDon = idHoaDon;
+    public String getMaPGG() {
+        return maPGG;
     }
 
-    public int getIdSanPhamChiTiet() {
-        return idSanPhamChiTiet;
+    public void setMaPGG(String maPGG) {
+        this.maPGG = maPGG;
     }
 
-    public void setIdSanPhamChiTiet(int idSanPhamChiTiet) {
-        this.idSanPhamChiTiet = idSanPhamChiTiet;
+    public String getMaNhanVien() {
+        return maNhanVien;
     }
 
-    public double getDonGia() {
-        return donGia;
+    public void setMaNhanVien(String maNhanVien) {
+        this.maNhanVien = maNhanVien;
     }
 
-    public void setDonGia(double donGia) {
-        this.donGia = donGia;
+    public String getMaKhachHang() {
+        return maKhachHang;
     }
 
-    public double getDonGiaSau() {
-        return donGiaSau;
+    public void setMaKhachHang(String maKhachHang) {
+        this.maKhachHang = maKhachHang;
     }
 
-    public void setDonGiaSau(double donGiaSau) {
-        this.donGiaSau = donGiaSau;
+    public String getMaSPCT() {
+        return maSPCT;
     }
 
-    public int getSoLuong() {
+    public void setMaSPCT(String maSPCT) {
+        this.maSPCT = maSPCT;
+    }
+
+    public Integer getSoLuong() {
         return soLuong;
     }
 
-    public void setSoLuong(int soLuong) {
+    public void setSoLuong(Integer soLuong) {
         this.soLuong = soLuong;
     }
 
-    public double getThanhTien() {
+    public Double getThanhTien() {
         return thanhTien;
     }
 
-    public void setThanhTien(double thanhTien) {
+    public void setThanhTien(Double thanhTien) {
         this.thanhTien = thanhTien;
     }
 
@@ -103,44 +94,4 @@ public class HoaDonChiTiet {
         this.trangThai = trangThai;
     }
 
-    public String getTenSanPham() {
-        return tenSanPham;
-    }
-
-    public void setTenSanPham(String tenSanPham) {
-        this.tenSanPham = tenSanPham;
-    }
-
-    public int getSize() {
-        return size;
-    }
-
-    public void setSize(int size) {
-        this.size = size;
-    }
-
-    public String getMauSac() {
-        return mauSac;
-    }
-
-    public void setMauSac(String mauSac) {
-        this.mauSac = mauSac;
-    }
-
-    public String getTenChatLieu() {
-        return tenChatLieu;
-    }
-
-    public void setTenChatLieu(String tenChatLieu) {
-        this.tenChatLieu = tenChatLieu;
-    }
-
-    @Override
-    public String toString() {
-        return "HoaDonChiTiet{" + "idHoaDonChiTiet=" + idHoaDonChiTiet + ", idHoaDon=" + idHoaDon + ", idSanPhamChiTiet=" + idSanPhamChiTiet + ", donGia=" + donGia + ", donGiaSau=" + donGiaSau + ", soLuong=" + soLuong + ", thanhTien=" + thanhTien + ", trangThai=" + trangThai + ", tenSanPham=" + tenSanPham + ", size=" + size + ", mauSac=" + mauSac + ", tenChatLieu=" + tenChatLieu + '}';
-    }
-
-    public void inThongTin() {
-        System.out.println("HoaDonChiTiet{" + "idHoaDonChiTiet=" + idHoaDonChiTiet + ", idHoaDon=" + idHoaDon + ", idSanPhamChiTiet=" + idSanPhamChiTiet + ", donGia=" + donGia + ", donGiaSau=" + donGiaSau + ", soLuong=" + soLuong + ", thanhTien=" + thanhTien + ", trangThai=" + trangThai + ", tenSanPham=" + tenSanPham + ", size=" + size + ", mauSac=" + mauSac + ", tenChatLieu=" + tenChatLieu + '}');
-    }
 }

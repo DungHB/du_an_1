@@ -52,46 +52,6 @@ public class NguoiDungServiceImpl implements NguoiDungService {
         return nd;
     }
 
-    @Override
-    public boolean themNhanVien(NguoiDung nguoiDung) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public NguoiDung getNhanVienByIdNhanVien(String idNhanVien) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public List<NguoiDung> getAllViewTable() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public boolean suaThongTinNhanVien(NguoiDung nguoiDung) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public NguoiDung getNhanVienByMaNhanVien(String maNhanVien) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public List<NguoiDung> getAllViewTableByPage(int offset, int limit) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public int getCountNhanVien() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public List<NguoiDung> getAllViewTableSearch(String keyWord) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
     private NguoiDung mapNguoiDung(ResultSet rs) throws SQLException {
         NguoiDung nd = new NguoiDung();
         nd.setIdNguoiDung(rs.getInt(1));
@@ -108,22 +68,23 @@ public class NguoiDungServiceImpl implements NguoiDungService {
     }
 
     @Override
-    public ArrayList<Login> LoginSearch(String maND, String mk) {
+    public ArrayList<Login> LoginSearch(String tenDN, String mk) {
         listLogin.clear();
         try {
-            String sql = "SELECT MaNguoiDung, MatKhau, cv.TenChucVu FROM NguoiDung nd\n"
-                    + "JOIN ChucVu cv ON nd.IdChucVu = cv.IdChucVu\n"
-                    + "WHERE nd.MaNguoiDung = ? AND nd.MatKhau = ?";
+            String sql = "select TenDangNhap, MatKhau, ChucVu.MaChucVu, Email from NguoiDung\n"
+                    + "join ChucVu on NguoiDung.MaChucVu = ChucVu.MaChucVu\n"
+                    + "where NguoiDung.TenDangNhap = ? and MatKhau = ?";
             Connection conn = DBConnect.getConnection();
             PreparedStatement stm = conn.prepareStatement(sql);
-            stm.setString(1, maND);
+            stm.setString(1, tenDN);
             stm.setString(2, mk);
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
                 Login lg = new Login();
-                lg.setMaNguoiDung(rs.getString(1));
+                lg.setTenDangNhap(rs.getString(1));
                 lg.setMatKhau(rs.getString(2));
                 lg.setChucVu(rs.getString(3));
+                lg.setEmail(rs.getString(4));
                 listLogin.add(lg);
             }
         } catch (Exception e) {
@@ -140,7 +101,7 @@ public class NguoiDungServiceImpl implements NguoiDungService {
 
     @Override
     public String listLG() {
-        return listGetNameLogin.get(0).getMaNguoiDung();
+        return listGetNameLogin.get(0).getTenDangNhap();
     }
 
 }

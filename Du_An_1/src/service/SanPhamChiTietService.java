@@ -1,24 +1,22 @@
 package service;
 
+import java.util.ArrayList;
 import java.util.List;
 import model.SanPhamChiTiet;
 
 public interface SanPhamChiTietService {
 
-    List<SanPhamChiTiet> getAll();
+    ArrayList<SanPhamChiTiet> getAll();
+
     int getIdByMaND(String maND);
-    SanPhamChiTiet getRowSPCT (int row);
-    int getIdSPCTFromSP (int idSP);
 
-    Boolean themSanPhamChiTiet(SanPhamChiTiet spct);
+    SanPhamChiTiet getRowSPCT(int row);
 
-    SanPhamChiTiet getSanPhamChiTietById(String idSPCT);
+    String getMaSPCTFromSP(String maSP, String maMS);
 
-    boolean capNhatSanPhamChiTiet(SanPhamChiTiet spct);
+    String getMaMSByTenMS(String tenMS);
 
-    List<SanPhamChiTiet> getAllSanPhamChiTietViewTable(int offset, int limit);
-
-    List<SanPhamChiTiet> getAllSanPhamChiTietViewTableSearch(String searchKeyWord);
+    String getMaSPCTByMaSP(String maSP);
 
     int getCountSPCT();
 }

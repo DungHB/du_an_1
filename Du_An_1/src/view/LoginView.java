@@ -78,28 +78,31 @@ public class LoginView extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         if (checkForm()) {
-            String maND = txtTenDN.getText();
+            String tenDN = txtTenDN.getText().trim();
             char[] pass = txtMK.getPassword();
-            String mk = new String(pass);
-            list = qlLogin.LoginSearch(maND, mk);
-            Login lg = new Login(maND, mk, "");
-//            qlLogin.tenNV(lg);
-//            System.out.println(lg.getMaNguoiDung());
-//            qlLogin.listLG();
-//            System.out.println(qlLogin.listLG());
+            String mk = new String(pass).trim();
+            list = qlLogin.LoginSearch(tenDN, mk);
+            System.out.println(list);
+            Login lgin = new Login(tenDN, mk, "", "");
+            qlLogin.tenNV(lgin);
+            System.out.println(lgin);
+            System.out.println(lgin.getTenDangNhap());
+            qlLogin.listLG();
+            System.out.println(qlLogin.listLG());
             if (list.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Đăng nhập thất bại. Vui lòng kiểm tra lại tên tài khoản và mật khẩu!");
-            } else if (list.size() == 1 && list.get(0).getChucVu().equals("Quản lý")) {
+            } else if (list.size() == 1 && list.get(0).getChucVu().equals("QL")) {
                 JOptionPane.showMessageDialog(this, "Đăng nhập thành công!");
-                this.dispose();
+                this.setVisible(false);
                 QuanLyView qlv = new QuanLyView();
                 qlv.setVisible(true);
-            } else if (list.size() == 1 && list.get(0).getChucVu().equals("Nhân viên")) {
+                System.out.println("Đã chạy đến đây");
+            } else if (list.size() == 1 && list.get(0).getChucVu().equals("NV")) {
                 JOptionPane.showMessageDialog(this, "Đăng nhập thành công!");
-                this.dispose();
+                this.setVisible(false);
                 NhanVienView nvv = new NhanVienView();
                 nvv.setVisible(true);
-                nvv.qlLogin.tenNV(lg);
+                nvv.qlnd.tenNV(lgin);
             }
         } else {
             JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ tên tài khoản và mật khẩu!");

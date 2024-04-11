@@ -183,6 +183,7 @@ public class QuanLyView extends javax.swing.JFrame {
         btn_timKiem = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         tbl_dsGioHang = new javax.swing.JTable();
+        formQuanLyVoucher = new javax.swing.JPanel();
         formThongKe = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -1411,7 +1412,7 @@ public class QuanLyView extends javax.swing.JFrame {
                     .addGroup(jPanel33Layout.createSequentialGroup()
                         .addGap(100, 100, 100)
                         .addComponent(btn_timKiem)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
         jPanel33Layout.setVerticalGroup(
             jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1476,12 +1477,13 @@ public class QuanLyView extends javax.swing.JFrame {
             formQuanLyHoaDonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(formQuanLyHoaDonLayout.createSequentialGroup()
                 .addGap(104, 104, 104)
-                .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(153, 153, 153))
-            .addGroup(formQuanLyHoaDonLayout.createSequentialGroup()
-                .addGap(77, 77, 77)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 834, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(formQuanLyHoaDonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(formQuanLyHoaDonLayout.createSequentialGroup()
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 834, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(formQuanLyHoaDonLayout.createSequentialGroup()
+                        .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(153, 153, 153))))
         );
         formQuanLyHoaDonLayout.setVerticalGroup(
             formQuanLyHoaDonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1494,6 +1496,19 @@ public class QuanLyView extends javax.swing.JFrame {
         );
 
         formQuanLy.add(formQuanLyHoaDon, "card5");
+
+        javax.swing.GroupLayout formQuanLyVoucherLayout = new javax.swing.GroupLayout(formQuanLyVoucher);
+        formQuanLyVoucher.setLayout(formQuanLyVoucherLayout);
+        formQuanLyVoucherLayout.setHorizontalGroup(
+            formQuanLyVoucherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1088, Short.MAX_VALUE)
+        );
+        formQuanLyVoucherLayout.setVerticalGroup(
+            formQuanLyVoucherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 750, Short.MAX_VALUE)
+        );
+
+        formQuanLy.add(formQuanLyVoucher, "card8");
 
         javax.swing.GroupLayout formThongKeLayout = new javax.swing.GroupLayout(formThongKe);
         formThongKe.setLayout(formThongKeLayout);
@@ -1671,6 +1686,7 @@ public class QuanLyView extends javax.swing.JFrame {
     private javax.swing.JPanel formQuanLyKhachHang;
     private javax.swing.JPanel formQuanLyNhanVien;
     private javax.swing.JPanel formQuanLySanPham;
+    private javax.swing.JPanel formQuanLyVoucher;
     private javax.swing.JPanel formThongKe;
     private javax.swing.JPanel formTrangChu;
     private javax.swing.JButton jButton1;
