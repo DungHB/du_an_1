@@ -2,25 +2,14 @@ package model;
 
 public class Size {
 
-    private int idSize;
-    private String maSize;
-    private int size;
+    private String maSize,Size;
 
     public Size() {
     }
 
-    public Size(int idSize, String maSize, int size) {
-        this.idSize = idSize;
+    public Size(String maSize, String Size) {
         this.maSize = maSize;
-        this.size = size;
-    }
-
-    public int getIdSize() {
-        return idSize;
-    }
-
-    public void setIdSize(int idSize) {
-        this.idSize = idSize;
+        this.Size = Size;
     }
 
     public String getMaSize() {
@@ -31,12 +20,13 @@ public class Size {
         this.maSize = maSize;
     }
 
-    public int getSize() {
-        return size;
+    public String getSize() {
+        return Size;
     }
 
-    public void setSize(int size) {
-        this.size = size;
+    public void setSize(String Size) {
+        this.Size = Size;
     }
 
+    
 }

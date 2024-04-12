@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import model.KhachHang;
 import service.KhachHangService;
 import java.sql.*;
+import java.util.List;
 import ultil.DBConnect;
 
 public class KhachHangServiceImpl implements KhachHangService {

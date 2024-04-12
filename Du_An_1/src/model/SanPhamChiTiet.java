@@ -9,11 +9,12 @@ public class SanPhamChiTiet {
     private String tenSanPham;
     private String tenChatLieu;
     private String tenMauSac;
+    private int soLuong;
 
     public SanPhamChiTiet() {
     }
 
-    public SanPhamChiTiet(String maSPCT, String maSanPham, String size, String tenThuongHieu, String tenSanPham, String tenChatLieu, String tenMauSac) {
+    public SanPhamChiTiet(String maSPCT, String maSanPham, String size, String tenThuongHieu, String tenSanPham, String tenChatLieu, String tenMauSac, int soLuong) {
         this.maSPCT = maSPCT;
         this.maSanPham = maSanPham;
         this.size = size;
@@ -21,6 +22,7 @@ public class SanPhamChiTiet {
         this.tenSanPham = tenSanPham;
         this.tenChatLieu = tenChatLieu;
         this.tenMauSac = tenMauSac;
+        this.soLuong = soLuong;
     }
 
     public String getMaSPCT() {
@@ -77,6 +79,14 @@ public class SanPhamChiTiet {
 
     public void setTenMauSac(String tenMauSac) {
         this.tenMauSac = tenMauSac;
+    }
+
+    public int getSoLuong() {
+        return soLuong;
+    }
+
+    public void setSoLuong(int soLuong) {
+        this.soLuong = soLuong;
     }
 
 }

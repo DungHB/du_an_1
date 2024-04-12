@@ -54,16 +54,16 @@ public class NguoiDungServiceImpl implements NguoiDungService {
 
     private NguoiDung mapNguoiDung(ResultSet rs) throws SQLException {
         NguoiDung nd = new NguoiDung();
-//        nd.setIdNguoiDung(rs.getInt(1));
-//        nd.setMaNguoiDung(rs.getString(2));
-//        nd.setTenNguoiDung(rs.getString(3));
-//        nd.setSdt(rs.getString(4));
-//        nd.setDiaChi(rs.getString(5));
-//        nd.setNgaySinh(rs.getDate(6));
-//        nd.setGioiTinh(rs.getString(7));
-//        nd.setMatKhau(rs.getString(8));
-//        nd.setIdChucVu(rs.getInt(9));
-//        nd.setTrangThai(rs.getString(10));
+        nd.setMaNguoiDung(rs.getString(1));
+        nd.setTenNguoiDung(rs.getString(2));
+        nd.setGioiTinh(rs.getBoolean(3));
+        nd.setTuoi(rs.getInt(4));
+        nd.setSdt(rs.getString(5));
+        nd.setEmail(rs.getString(6));
+        nd.setMaCV(rs.getString(7));
+        nd.setTenDN(rs.getString(8));
+        nd.setMatKhau(rs.getString(8));
+        nd.setTrangThai(rs.getBoolean(10));
         return nd;
     }
 
@@ -91,6 +91,10 @@ public class NguoiDungServiceImpl implements NguoiDungService {
             e.printStackTrace();
         }
         return listLogin;
+    }
+
+    public NguoiDung getRow(int row) {
+        return listNguoiDung.get(row);
     }
 
     @Override

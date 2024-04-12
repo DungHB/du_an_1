@@ -8,9 +8,9 @@ public class DBConnect {
 
     public static final String HOSTNAME = "localhost";
     public static final String PORT = "1433";
-    public static final String DBNAME = "du_an_5";// Ten database trong sql
-    public static final String USERNAME = "sa";// Ten tk sql
-    public static final String PASSWORD = "memcu999";// MK sql
+    public static final String DBNAME = "du_an_1";// Ten database trong sql
+    public static final String USERNAME = "demo";// Ten tk sql
+    public static final String PASSWORD = "123";// MK sql
 
     /**
      * Get connection to MSSQL Server
