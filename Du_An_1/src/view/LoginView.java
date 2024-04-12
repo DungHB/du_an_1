@@ -1,18 +1,19 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package view;
 
-/**
- *
- * @author Hi Windows 10
- */
+import java.util.ArrayList;
+import model.Login;
+import javax.swing.JOptionPane;
+import service.Impl.NguoiDungServiceImpl;
+import service.NguoiDungService;
+
 public class LoginView extends javax.swing.JFrame {
 
     /**
      * Creates new form LoginView
      */
+    NguoiDungService qlLogin = new NguoiDungServiceImpl();
+    ArrayList<Login> list = new ArrayList<>();
+    
     public LoginView() {
         initComponents();
         setLocationRelativeTo(null);
@@ -27,83 +28,166 @@ public class LoginView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        txtTenDN = new javax.swing.JTextField();
+        txtMK = new javax.swing.JPasswordField();
+        btnLogin = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        cbxShowPass = new javax.swing.JCheckBox();
+        jLabel2 = new javax.swing.JLabel();
+        lblQuenMatKhau = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Login");
+        setBackground(new java.awt.Color(0, 204, 153));
+        setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        txtTenDN.setBackground(new java.awt.Color(204, 255, 204));
+        txtTenDN.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        txtTenDN.setBorder(javax.swing.BorderFactory.createTitledBorder("Tài khoản đăng nhập"));
+        getContentPane().add(txtTenDN, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 230, 270, 56));
+
+        txtMK.setBackground(new java.awt.Color(204, 255, 204));
+        txtMK.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        txtMK.setBorder(javax.swing.BorderFactory.createTitledBorder("Nhập mật khẩu"));
+        getContentPane().add(txtMK, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 300, 270, 63));
+
+        btnLogin.setBackground(new java.awt.Color(51, 102, 255));
+        btnLogin.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnLogin.setForeground(new java.awt.Color(255, 255, 255));
+        btnLogin.setText("Đăng nhập");
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 420, 111, 39));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinh/dep.jpg"))); // NOI18N
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 430, 590));
+
+        jPanel1.setBackground(new java.awt.Color(0, 153, 153));
+
+        jLabel1.setBackground(new java.awt.Color(204, 204, 204));
         jLabel1.setFont(new java.awt.Font("Barlow Condensed Medium", 0, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(51, 51, 255));
         jLabel1.setText("Đăng Nhập");
 
-        jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField1.setBorder(javax.swing.BorderFactory.createTitledBorder("Tài khoản đăng nhập"));
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        cbxShowPass.setBackground(new java.awt.Color(0, 153, 153));
+        cbxShowPass.setForeground(new java.awt.Color(255, 255, 255));
+        cbxShowPass.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cbxShowPass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                cbxShowPassActionPerformed(evt);
             }
         });
 
-        jButton1.setText("Đăng nhập");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+        jLabel2.setText("Hiển thị mật khẩu");
+
+        lblQuenMatKhau.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblQuenMatKhau.setText("Quên mật khẩu ?");
+        lblQuenMatKhau.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblQuenMatKhauMouseClicked(evt);
             }
         });
 
-        jRadioButton1.setText("Hiển thị mật khẩu");
-
-        jPasswordField1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jPasswordField1.setBorder(javax.swing.BorderFactory.createTitledBorder("Nhập mật khẩu"));
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jRadioButton1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                                .addComponent(jButton1))
-                            .addComponent(jTextField1)
-                            .addComponent(jPasswordField1)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(68, 68, 68)
-                        .addComponent(jLabel1)))
-                .addContainerGap(41, Short.MAX_VALUE))
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(124, 124, 124)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(89, 89, 89)
+                        .addComponent(cbxShowPass, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2)))
+                .addContainerGap(130, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(lblQuenMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(82, 82, 82))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(108, 108, 108)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jRadioButton1))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 220, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cbxShowPass)
+                    .addComponent(jLabel2))
+                .addGap(110, 110, 110)
+                .addComponent(lblQuenMatKhau)
+                .addGap(69, 69, 69))
         );
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 0, 390, 590));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    public boolean checkForm() {
+        if (txtTenDN.getText().isEmpty() || txtMK.getText().isEmpty()) {
+            return false;
+        }
+        return true;
+    }
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+        if (checkForm()) {
+            String tenDN = txtTenDN.getText().trim();
+            char[] pass = txtMK.getPassword();
+            String mk = new String(pass).trim();
+            list = qlLogin.LoginSearch(tenDN, mk);
+            System.out.println(list);
+            Login lgin = new Login(tenDN, mk, "", "");
+            qlLogin.tenNV(lgin);
+            System.out.println(lgin);
+            System.out.println(lgin.getTenDangNhap());
+            qlLogin.listLG();
+            System.out.println(qlLogin.listLG());
+            if (list.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Đăng nhập thất bại. Vui lòng kiểm tra lại tên tài khoản và mật khẩu!");
+            } else if (list.size() == 1 && list.get(0).getChucVu().equals("QL")) {
+                JOptionPane.showMessageDialog(this, "Đăng nhập thành công!");
+                this.setVisible(false);
+                QuanLyView qlv = new QuanLyView();
+                qlv.setVisible(true);
+                System.out.println("Đã chạy đến đây");
+            } else if (list.size() == 1 && list.get(0).getChucVu().equals("NV")) {
+                JOptionPane.showMessageDialog(this, "Đăng nhập thành công!");
+                this.setVisible(false);
+                NhanVienView nvv = new NhanVienView();
+                nvv.setVisible(true);
+                nvv.qlnd.tenNV(lgin);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ tên tài khoản và mật khẩu!");
+        }
+    }//GEN-LAST:event_btnLoginActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void cbxShowPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxShowPassActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        if (cbxShowPass.isSelected()) {
+            txtMK.setEchoChar((char) 0);
+        } else {
+            txtMK.setEchoChar((char) 42);
+        }
+    }//GEN-LAST:event_cbxShowPassActionPerformed
+
+    private void lblQuenMatKhauMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblQuenMatKhauMouseClicked
+        // TODO add your handling code here:
+        QuenMKView mkv = new QuenMKView();
+        this.setVisible(false);
+        mkv.setVisible(true);
+    }//GEN-LAST:event_lblQuenMatKhauMouseClicked
 
     /**
      * @param args the command line arguments
@@ -141,10 +225,14 @@ public class LoginView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnLogin;
+    private javax.swing.JCheckBox cbxShowPass;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblQuenMatKhau;
+    private javax.swing.JPasswordField txtMK;
+    private javax.swing.JTextField txtTenDN;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,112 +1,134 @@
 package service.Impl;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import model.SanPham;
 import model.SanPhamChiTiet;
+import service.SanPhamChiTietService;
+import java.sql.*;
 import ultil.DBConnect;
 
-public class SanPhamChiTietServiceImpl {
- List<SanPhamChiTiet> list = new ArrayList<>();
+public class SanPhamChiTietServiceImpl implements SanPhamChiTietService {
 
-    public List<SanPhamChiTiet> getAll2() {
+    ArrayList<SanPhamChiTiet> list = new ArrayList<>();
+
+    @Override
+    public ArrayList<SanPhamChiTiet> getAll() {
         list.clear();
         try {
-            String sql = "select TenSanPham ,TenChatLieu,TenMauSac,Size,Gia,SoLuong \n"
-                    + "from SanPhamChiTiet spct\n"
-                    + "join SanPham sp on spct.IdSanPham = sp.IdSanPham\n"
-                    + "join ChatLieu cl on spct.IdChatLieu = cl.IdChatLieu\n"
-                    + "join MauSac ms on spct.IdMauSac = ms.IdMauSac\n"
-                    + "join Size on spct.IdSize= Size.IdSize";
-            Connection con = DBConnect.getConnection();
-            Statement stm = con.createStatement();
+            String sql = "SELECT spct.IdSanPhamChiTiet, TenSanPham, TenMauSac, Size, TenChatLieu, lsg.GiaBanDau, spct.SoLuong FROM SanPhamChiTiet spct\n"
+                    + "JOIN SanPham sp ON sp.IdSanPham = spct.IdSanPham\n"
+                    + "JOIN MauSac ms ON ms.IdMauSac = spct.IdMauSac\n"
+                    + "JOIN Size s ON s.IdSize = spct.IdSize\n"
+                    + "JOIN ChatLieu cl ON cl.IdChatLieu = spct.IdChatLieu\n"
+                    + "JOIN LichSuGia lsg ON lsg.IdSanPhamChiTiet = spct.IdSanPhamChiTiet";
+            Connection conn = DBConnect.getConnection();
+            Statement stm = conn.createStatement();
             ResultSet rs = stm.executeQuery(sql);
             while (rs.next()) {
                 SanPhamChiTiet spct = new SanPhamChiTiet();
-                spct.setTenSanPham(rs.getString(1));
-                spct.setTenChatLieu(rs.getString(2));
+                //spct.setIdSanPhamChiTiet(rs.getInt(1));
+                spct.setTenSanPham(rs.getString(2));
                 spct.setTenMauSac(rs.getString(3));
-                spct.setSize(rs.getInt(4));
-                spct.setGia(rs.getDouble(5));
-                spct.setSoLuong(rs.getInt(6));
+                //spct.setSize(rs.getInt(4));
+                spct.setTenChatLieu(rs.getString(5));
+                //spct.setGia(rs.getDouble(6));
+                //spct.setSoLuong(rs.getInt(7));
                 list.add(spct);
             }
+            conn.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         return list;
     }
 
-    public SanPhamChiTiet getRow2(int row2) {
-        return list.get(row2);
+    @Override
+    public int getCountSPCT() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    public void Them(SanPham sp) {
+    @Override
+    public int getIdByMaND(String ma) {
+        int id = 0;
         try {
-            String sql = "Insert into SanPham(MaSanPham, TenSanPham)VALUES(?,?)";
+            String sql = "SELECT IdNguoiDung FROM NguoiDung WHERE MaNguoiDung = ?";
             Connection conn = DBConnect.getConnection();
             PreparedStatement stm = conn.prepareStatement(sql);
-            stm.setString(1, sp.getMaSanPham());
-            stm.setString(2, sp.getTenSanPham());
-            //stm.setInt(3, sp.getIdTheLoai());
-            //stm.setInt(4, sp.getIdThuongHieu());
-            stm.executeUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    public void update(SanPham sp) {
-        try {
-            String sql = "Update SanPham set TenSanPham=?  where MaSanPham=?";
-            Connection conn = DBConnect.getConnection();
-            PreparedStatement stm = conn.prepareStatement(sql);
-            stm.setString(1, sp.getTenSanPham());
-            //stm.setInt(2, sp.getIdTheLoai());
-            //stm.setInt(3, sp.getIdThuongHieu());
-            stm.setString(2, sp.getMaSanPham());
-            stm.executeUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void deleteByMa(String Ma) {
-        try {
-            Connection conn = DBConnect.getConnection();
-            String sql = "DELETE FROM SanPham WHERE MaSanPham=?";
-            PreparedStatement stm = conn.prepareStatement(sql);
-            stm.setString(1, Ma);
-            stm.executeUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public List<SanPhamChiTiet> searchByMa(String keyword) {
-        String sql = "select IdSanPham,MaSanPham,TenSanPham from SanPham WHERE  MaSanPham= ?";
-        list.clear();
-        try {
-            Connection con = DBConnect.getConnection();
-            PreparedStatement stm = con.prepareStatement(sql);
-            stm.setString(1, keyword);
+            stm.setString(1, ma);
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
-                SanPhamChiTiet spct = new SanPhamChiTiet();
-                spct.setIdSanPham(rs.getInt(1));
-                //spct.setMaSanPham(rs.getString(2));
-                spct.setTenSanPham(rs.getString(3));
-                list.add(spct);
+                id = rs.getInt(1);
             }
+            conn.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return list;
+        return id;
     }
+
+    @Override
+    public SanPhamChiTiet getRowSPCT(int row) {
+        return list.get(row);
+    }
+
+    @Override
+    public String getMaSPCTFromSP(String maSP, String maMS) {
+        String kq = "";
+        try {
+            String sql = "SELECT MaSPCT FROM SanPhamChiTiet\n"
+                    + "JOIN SanPham ON SanPham.MaSanPham = SanPhamChiTiet.MaSanPham\n"
+                    + "WHERE SanPham.MaSanPham = ? and MaMauSac = ?";
+            Connection conn = DBConnect.getConnection();
+            PreparedStatement stm = conn.prepareStatement(sql);
+            stm.setString(1, maSP);
+            stm.setString(2, maMS);
+            ResultSet rs = stm.executeQuery();
+            if (rs.next()) {
+                kq = rs.getString("MaSPCT");
+            }
+            System.out.println(kq);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return kq;
+    }
+
+    @Override
+    public String getMaMSByTenMS(String tenMS) {
+        String kq = "";
+        try {
+            String sql = "select MaMauSac from MauSac where TenMauSac = ?";
+            Connection conn = DBConnect.getConnection();
+            PreparedStatement stm = conn.prepareStatement(sql);
+            stm.setString(1, tenMS);
+            ResultSet rs = stm.executeQuery();
+            if (rs.next()) {
+                kq = rs.getString("MaMauSac");
+            }
+            System.out.println(kq);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return kq;
+    }
+
+    @Override
+    public String getMaSPCTByMaSP(String maSP) {
+        String kq = "";
+        try {
+            String sql = "select MaSPCT from SanPhamChiTiet where MaSanPham = ?";
+            Connection conn = DBConnect.getConnection();
+            PreparedStatement stm = conn.prepareStatement(sql);
+            stm.setString(1, maSP);
+            ResultSet rs = stm.executeQuery();
+            if (rs.next()) {
+                kq = rs.getString("MaSPCT");
+            }
+            System.out.println(kq);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return kq;
+    }
+
 }

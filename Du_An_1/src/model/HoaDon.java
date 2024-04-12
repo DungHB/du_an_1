@@ -2,39 +2,32 @@ package model;
 
 public class HoaDon {
 
-    private int idHoaDon;
     private String maHoaDon;
     private String ngayTao;
-    private String ghiChu;
-    private int idNhanVien;
-    private int idKhachHang;
-    private double tongTien;
+    private String ngayHoanThanh;
     private String trangThai;
-    private String tenNhanVien;
-    private String tenKhachHang;
+    private String maPGG;
+    private String maNV;
+    private String maKhachHang;
 
     public HoaDon() {
     }
 
-    public HoaDon(int idHoaDon, String maHoaDon, String ngayTao, String ghiChu, int idNhanVien, int idKhachHang, double tongTien, String trangThai, String tenNhanVien, String tenKhachHang) {
-        this.idHoaDon = idHoaDon;
+    public HoaDon(String maHoaDon, String ngayTao, String ngayHoanThanh, String trangThai, String maPGG, String maNV, String maKhachHang) {
         this.maHoaDon = maHoaDon;
         this.ngayTao = ngayTao;
-        this.ghiChu = ghiChu;
-        this.idNhanVien = idNhanVien;
-        this.idKhachHang = idKhachHang;
-        this.tongTien = tongTien;
+        this.ngayHoanThanh = ngayHoanThanh;
         this.trangThai = trangThai;
-        this.tenNhanVien = tenNhanVien;
-        this.tenKhachHang = tenKhachHang;
+        this.maPGG = maPGG;
+        this.maNV = maNV;
+        this.maKhachHang = maKhachHang;
     }
 
-    public int getIdHoaDon() {
-        return idHoaDon;
-    }
-
-    public void setIdHoaDon(int idHoaDon) {
-        this.idHoaDon = idHoaDon;
+    public HoaDon(String maHoaDon, String ngayTao, String maNV, String trangThai) {
+        this.maHoaDon = maHoaDon;
+        this.ngayTao = ngayTao;
+        this.maNV = maNV;
+        this.trangThai = trangThai;
     }
 
     public String getMaHoaDon() {
@@ -53,36 +46,12 @@ public class HoaDon {
         this.ngayTao = ngayTao;
     }
 
-    public String getGhiChu() {
-        return ghiChu;
+    public String getNgayHoanThanh() {
+        return ngayHoanThanh;
     }
 
-    public void setGhiChu(String ghiChu) {
-        this.ghiChu = ghiChu;
-    }
-
-    public int getIdNhanVien() {
-        return idNhanVien;
-    }
-
-    public void setIdNhanVien(int idNhanVien) {
-        this.idNhanVien = idNhanVien;
-    }
-
-    public int getIdKhachHang() {
-        return idKhachHang;
-    }
-
-    public void setIdKhachHang(int idKhachHang) {
-        this.idKhachHang = idKhachHang;
-    }
-
-    public double getTongTien() {
-        return tongTien;
-    }
-
-    public void setTongTien(double tongTien) {
-        this.tongTien = tongTien;
+    public void setNgayHoanThanh(String ngayHoanThanh) {
+        this.ngayHoanThanh = ngayHoanThanh;
     }
 
     public String getTrangThai() {
@@ -93,20 +62,28 @@ public class HoaDon {
         this.trangThai = trangThai;
     }
 
-    public String getTenNhanVien() {
-        return tenNhanVien;
+    public String getMaPGG() {
+        return maPGG;
     }
 
-    public void setTenNhanVien(String tenNhanVien) {
-        this.tenNhanVien = tenNhanVien;
+    public void setMaPGG(String maPGG) {
+        this.maPGG = maPGG;
     }
 
-    public String getTenKhachHang() {
-        return tenKhachHang;
+    public String getMaNV() {
+        return maNV;
     }
 
-    public void setTenKhachHang(String tenKhachHang) {
-        this.tenKhachHang = tenKhachHang;
+    public void setMaNV(String maNV) {
+        this.maNV = maNV;
+    }
+
+    public String getMaKhachHang() {
+        return maKhachHang;
+    }
+
+    public void setMaKhachHang(String maKhachHang) {
+        this.maKhachHang = maKhachHang;
     }
 
 }

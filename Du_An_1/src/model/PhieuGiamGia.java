@@ -2,33 +2,25 @@ package model;
 
 public class PhieuGiamGia {
 
-    private int idPhieuGiamGia;
     private String maPhieuGiamGia;
+    private String tenPhieuGiamGia;
     private String ngayBatDau;
     private String ngayKetThuc;
-    private int soLuong;
-    private double giaTriGiamGia;
-    private String trangThai;
+    private Integer soLuongPGG;
+    private Double giaTriGiam;
+    private Double giaTriYeuCau;
 
     public PhieuGiamGia() {
     }
 
-    public PhieuGiamGia(int idPhieuGiamGia, String maPhieuGiamGia, String ngayBatDau, String ngayKetThuc, int soLuong, double giaTriGiamGia, String trangThai) {
-        this.idPhieuGiamGia = idPhieuGiamGia;
+    public PhieuGiamGia(String maPhieuGiamGia, String tenPhieuGiamGia, String ngayBatDau, String ngayKetThuc, Integer soLuongPGG, Double giaTriGiam, Double giaTriYeuCau) {
         this.maPhieuGiamGia = maPhieuGiamGia;
+        this.tenPhieuGiamGia = tenPhieuGiamGia;
         this.ngayBatDau = ngayBatDau;
         this.ngayKetThuc = ngayKetThuc;
-        this.soLuong = soLuong;
-        this.giaTriGiamGia = giaTriGiamGia;
-        this.trangThai = trangThai;
-    }
-
-    public int getIdPhieuGiamGia() {
-        return idPhieuGiamGia;
-    }
-
-    public void setIdPhieuGiamGia(int idPhieuGiamGia) {
-        this.idPhieuGiamGia = idPhieuGiamGia;
+        this.soLuongPGG = soLuongPGG;
+        this.giaTriGiam = giaTriGiam;
+        this.giaTriYeuCau = giaTriYeuCau;
     }
 
     public String getMaPhieuGiamGia() {
@@ -37,6 +29,14 @@ public class PhieuGiamGia {
 
     public void setMaPhieuGiamGia(String maPhieuGiamGia) {
         this.maPhieuGiamGia = maPhieuGiamGia;
+    }
+
+    public String getTenPhieuGiamGia() {
+        return tenPhieuGiamGia;
+    }
+
+    public void setTenPhieuGiamGia(String tenPhieuGiamGia) {
+        this.tenPhieuGiamGia = tenPhieuGiamGia;
     }
 
     public String getNgayBatDau() {
@@ -55,28 +55,28 @@ public class PhieuGiamGia {
         this.ngayKetThuc = ngayKetThuc;
     }
 
-    public int getSoLuong() {
-        return soLuong;
+    public Integer getSoLuongPGG() {
+        return soLuongPGG;
     }
 
-    public void setSoLuong(int soLuong) {
-        this.soLuong = soLuong;
+    public void setSoLuongPGG(Integer soLuongPGG) {
+        this.soLuongPGG = soLuongPGG;
     }
 
-    public double getGiaTriGiamGia() {
-        return giaTriGiamGia;
+    public Double getGiaTriGiam() {
+        return giaTriGiam;
     }
 
-    public void setGiaTriGiamGia(double giaTriGiamGia) {
-        this.giaTriGiamGia = giaTriGiamGia;
+    public void setGiaTriGiam(Double giaTriGiam) {
+        this.giaTriGiam = giaTriGiam;
     }
 
-    public String getTrangThai() {
-        return trangThai;
+    public Double getGiaTriYeuCau() {
+        return giaTriYeuCau;
     }
 
-    public void setTrangThai(String trangThai) {
-        this.trangThai = trangThai;
+    public void setGiaTriYeuCau(Double giaTriYeuCau) {
+        this.giaTriYeuCau = giaTriYeuCau;
     }
 
 }
