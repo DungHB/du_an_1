@@ -13,7 +13,7 @@ public class LoginView extends javax.swing.JFrame {
      */
     NguoiDungService qlLogin = new NguoiDungServiceImpl();
     ArrayList<Login> list = new ArrayList<>();
-
+    
     public LoginView() {
         initComponents();
         setLocationRelativeTo(null);
@@ -28,43 +28,107 @@ public class LoginView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txtMK = new javax.swing.JPasswordField();
         txtTenDN = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        txtMK = new javax.swing.JPasswordField();
+        btnLogin = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        cbxShowPass = new javax.swing.JCheckBox();
+        jLabel2 = new javax.swing.JLabel();
+        lblQuenMatKhau = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
+        setBackground(new java.awt.Color(0, 204, 153));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txtMK.setBackground(new java.awt.Color(204, 255, 204));
-        txtMK.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtMK.setBorder(javax.swing.BorderFactory.createTitledBorder("Nhập mật khẩu"));
-        getContentPane().add(txtMK, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 410, 270, 63));
-
         txtTenDN.setBackground(new java.awt.Color(204, 255, 204));
-        txtTenDN.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtTenDN.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
         txtTenDN.setBorder(javax.swing.BorderFactory.createTitledBorder("Tài khoản đăng nhập"));
-        getContentPane().add(txtTenDN, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 330, 270, 56));
+        getContentPane().add(txtTenDN, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 230, 270, 56));
+
+        txtMK.setBackground(new java.awt.Color(204, 255, 204));
+        txtMK.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        txtMK.setBorder(javax.swing.BorderFactory.createTitledBorder("Nhập mật khẩu"));
+        getContentPane().add(txtMK, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 300, 270, 63));
+
+        btnLogin.setBackground(new java.awt.Color(51, 102, 255));
+        btnLogin.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnLogin.setForeground(new java.awt.Color(255, 255, 255));
+        btnLogin.setText("Đăng nhập");
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 420, 111, 39));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinh/dep.jpg"))); // NOI18N
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 430, 590));
+
+        jPanel1.setBackground(new java.awt.Color(0, 153, 153));
 
         jLabel1.setBackground(new java.awt.Color(204, 204, 204));
         jLabel1.setFont(new java.awt.Font("Barlow Condensed Medium", 0, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel1.setForeground(new java.awt.Color(51, 51, 255));
         jLabel1.setText("Đăng Nhập");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 170, -1, -1));
 
-        jButton1.setText("Đăng nhập");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        cbxShowPass.setBackground(new java.awt.Color(0, 153, 153));
+        cbxShowPass.setForeground(new java.awt.Color(255, 255, 255));
+        cbxShowPass.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cbxShowPass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                cbxShowPassActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 540, 111, 39));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinh/dep.jpg"))); // NOI18N
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 430, 620));
+        jLabel2.setText("Hiển thị mật khẩu");
+
+        lblQuenMatKhau.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblQuenMatKhau.setText("Quên mật khẩu ?");
+        lblQuenMatKhau.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblQuenMatKhauMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(124, 124, 124)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(89, 89, 89)
+                        .addComponent(cbxShowPass, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2)))
+                .addContainerGap(130, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(lblQuenMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(82, 82, 82))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(108, 108, 108)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 220, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cbxShowPass)
+                    .addComponent(jLabel2))
+                .addGap(110, 110, 110)
+                .addComponent(lblQuenMatKhau)
+                .addGap(69, 69, 69))
+        );
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 0, 390, 590));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -75,7 +139,7 @@ public class LoginView extends javax.swing.JFrame {
         }
         return true;
     }
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
         if (checkForm()) {
             String tenDN = txtTenDN.getText().trim();
@@ -107,7 +171,23 @@ public class LoginView extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ tên tài khoản và mật khẩu!");
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnLoginActionPerformed
+
+    private void cbxShowPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxShowPassActionPerformed
+        // TODO add your handling code here:
+        if (cbxShowPass.isSelected()) {
+            txtMK.setEchoChar((char) 0);
+        } else {
+            txtMK.setEchoChar((char) 42);
+        }
+    }//GEN-LAST:event_cbxShowPassActionPerformed
+
+    private void lblQuenMatKhauMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblQuenMatKhauMouseClicked
+        // TODO add your handling code here:
+        QuenMKView mkv = new QuenMKView();
+        this.setVisible(false);
+        mkv.setVisible(true);
+    }//GEN-LAST:event_lblQuenMatKhauMouseClicked
 
     /**
      * @param args the command line arguments
@@ -145,9 +225,13 @@ public class LoginView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnLogin;
+    private javax.swing.JCheckBox cbxShowPass;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblQuenMatKhau;
     private javax.swing.JPasswordField txtMK;
     private javax.swing.JTextField txtTenDN;
     // End of variables declaration//GEN-END:variables

@@ -79,13 +79,14 @@ public class SanPhamServiceImpl implements SanPhamService {
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
                 SanPham sp = new SanPham();
-                sp.setTenSanPham(rs.getString(1));
-                sp.setTenThuongHieu(rs.getString(2));
-                sp.setTenMauSac(rs.getString(3));
-                sp.setTenChatLieu(rs.getString(4));
-                sp.setTenSize(rs.getString(5));
-                sp.setSoLuongSP(rs.getInt(6));
-                sp.setDonGia(rs.getDouble(7));
+                sp.setMaSanPham(rs.getString(1));
+                sp.setTenSanPham(rs.getString(2));
+                sp.setTenThuongHieu(rs.getString(3));
+                sp.setTenMauSac(rs.getString(4));
+                sp.setTenChatLieu(rs.getString(5));
+                sp.setTenSize(rs.getString(6));
+                sp.setSoLuongSP(rs.getInt(7));
+                sp.setDonGia(rs.getDouble(8));
                 list.add(sp);
             }
         } catch (Exception e) {

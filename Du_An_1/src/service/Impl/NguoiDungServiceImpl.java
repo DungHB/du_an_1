@@ -54,16 +54,16 @@ public class NguoiDungServiceImpl implements NguoiDungService {
 
     private NguoiDung mapNguoiDung(ResultSet rs) throws SQLException {
         NguoiDung nd = new NguoiDung();
-        nd.setIdNguoiDung(rs.getInt(1));
-        nd.setMaNguoiDung(rs.getString(2));
-        nd.setTenNguoiDung(rs.getString(3));
-        nd.setSdt(rs.getString(4));
-        nd.setDiaChi(rs.getString(5));
-        nd.setNgaySinh(rs.getDate(6));
-        nd.setGioiTinh(rs.getString(7));
-        nd.setMatKhau(rs.getString(8));
-        nd.setIdChucVu(rs.getInt(9));
-        nd.setTrangThai(rs.getString(10));
+//        nd.setIdNguoiDung(rs.getInt(1));
+//        nd.setMaNguoiDung(rs.getString(2));
+//        nd.setTenNguoiDung(rs.getString(3));
+//        nd.setSdt(rs.getString(4));
+//        nd.setDiaChi(rs.getString(5));
+//        nd.setNgaySinh(rs.getDate(6));
+//        nd.setGioiTinh(rs.getString(7));
+//        nd.setMatKhau(rs.getString(8));
+//        nd.setIdChucVu(rs.getInt(9));
+//        nd.setTrangThai(rs.getString(10));
         return nd;
     }
 
@@ -102,6 +102,31 @@ public class NguoiDungServiceImpl implements NguoiDungService {
     @Override
     public String listLG() {
         return listGetNameLogin.get(0).getTenDangNhap();
+    }
+
+    @Override
+    public ArrayList<NguoiDung> fogotPassword(String tenDN, String sdt) {
+        listNguoiDung.clear();
+        try {
+            String sql = "select TenDangNhap, MatKhau, Sdt from NguoiDung\n"
+                    + "where TenDangNhap = ? and Sdt = ?";
+            Connection conn = DBConnect.getConnection();
+            PreparedStatement stm = conn.prepareStatement(sql);
+            stm.setString(1, tenDN);
+            stm.setString(2, sdt);
+            ResultSet rs = stm.executeQuery();
+
+            while (rs.next()) {
+                NguoiDung nd = new NguoiDung();
+                nd.setTenDN(rs.getString(1));
+                nd.setMatKhau(rs.getString(2));
+                nd.setSdt(rs.getString(3));
+                listNguoiDung.add(nd);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listNguoiDung;
     }
 
 }

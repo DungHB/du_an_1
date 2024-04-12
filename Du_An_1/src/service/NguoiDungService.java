@@ -16,6 +16,7 @@ public interface NguoiDungService {
     String listLG();
 
     NguoiDung getLoginInfo(String maNguoiDung, String matKhau);
+    ArrayList<NguoiDung> fogotPassword(String tenDN, String sdt);
 
 //    boolean themNhanVien(NguoiDung nguoiDung);
 //

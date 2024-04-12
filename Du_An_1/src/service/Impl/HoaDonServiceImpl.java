@@ -161,4 +161,59 @@ public class HoaDonServiceImpl implements HoaDonService {
         return "Thanh toán thất bại";
     }
 
+    @Override
+    public ArrayList<HoaDon> searchQLHD(String maHoaDon) {
+
+        list.clear();
+        try {
+            String sql = "select * from HoaDon where MaHoaDon = ?";
+            Connection conn = DBConnect.getConnection();
+            PreparedStatement stm = conn.prepareStatement(sql);
+            stm.setString(1, maHoaDon);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                HoaDon hd = new HoaDon();
+                hd.setMaHoaDon(rs.getString(1));
+                hd.setNgayTao(rs.getString(2));
+                hd.setNgayHoanThanh(rs.getString(3));
+                hd.setMaNV(rs.getString(4));
+                hd.setMaKhachHang(rs.getString(5));
+                hd.setTrangThai(rs.getString(6));
+                hd.setMaPGG(rs.getString(7));
+                list.add(hd);
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    @Override
+    public ArrayList<HoaDon> locHDTheoNgay(String ngayBatDau, String ngayKetThuc) {
+        list.clear();
+        try {
+            String sql = "select * from HoaDon where NgayTao between ? and ? ";
+            Connection conn = DBConnect.getConnection();
+            PreparedStatement stm = conn.prepareStatement(sql);
+            stm.setString(1, ngayBatDau);
+            stm.setString(2, ngayKetThuc);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                HoaDon hd = new HoaDon();
+                hd.setMaHoaDon(rs.getString(1));
+                hd.setNgayTao(rs.getString(2));
+                hd.setNgayHoanThanh(rs.getString(3));
+                hd.setMaNV(rs.getString(4));
+                hd.setMaKhachHang(rs.getString(5));
+                hd.setTrangThai(rs.getString(6));
+                hd.setMaPGG(rs.getString(7));
+                list.add(hd);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
 }

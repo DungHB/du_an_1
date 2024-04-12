@@ -18,6 +18,8 @@ public interface HoaDonService {
     ArrayList<HoaDon> huyHoaDon(String maHoaDon, String trangThai);
     ArrayList<HoaDon> thanhToanApPGG(String maPGG, String maHoaDon);
     String thanhToanHoaDon(String trangThai, String ngayHoanThanh, String maHoaDon);
+    ArrayList<HoaDon> searchQLHD(String maHoaDon);
+    ArrayList<HoaDon> locHDTheoNgay(String ngayBatDau, String ngayKetThuc);
 //
 //    boolean capNhatHoaDon(HoaDon hd);
 //
