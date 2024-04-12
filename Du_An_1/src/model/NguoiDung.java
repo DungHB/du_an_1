@@ -1,42 +1,34 @@
 package model;
 
+import java.util.Date;
+
 public class NguoiDung {
 
-    private int idNguoiDung;
     private String maNguoiDung;
     private String tenNguoiDung;
+    private boolean gioiTinh;
+    private int tuoi;
     private String sdt;
-    private String diaChi;
-    private String ngaySinh;
-    private String gioiTinh;
+    private String email;
+    private String maCV;
+    private String tenDN;
     private String matKhau;
-    private int idChucVu;
-    private String trangThai;
-    private String tenChucVu;
+    private boolean trangThai;
 
     public NguoiDung() {
     }
 
-    public NguoiDung(int idNguoiDung, String maNguoiDung, String tenNguoiDung, String sdt, String diaChi, String ngaySinh, String gioiTinh, String matKhau, int idChucVu, String trangThai, String tenChucVu) {
-        this.idNguoiDung = idNguoiDung;
+    public NguoiDung(String maNguoiDung, String tenNguoiDung, boolean gioiTinh, int tuoi, String sdt, String email, String maCV, String tenDN, String matKhau, boolean trangThai) {
         this.maNguoiDung = maNguoiDung;
         this.tenNguoiDung = tenNguoiDung;
-        this.sdt = sdt;
-        this.diaChi = diaChi;
-        this.ngaySinh = ngaySinh;
         this.gioiTinh = gioiTinh;
+        this.tuoi = tuoi;
+        this.sdt = sdt;
+        this.email = email;
+        this.maCV = maCV;
+        this.tenDN = tenDN;
         this.matKhau = matKhau;
-        this.idChucVu = idChucVu;
         this.trangThai = trangThai;
-        this.tenChucVu = tenChucVu;
-    }
-
-    public int getIdNguoiDung() {
-        return idNguoiDung;
-    }
-
-    public void setIdNguoiDung(int idNguoiDung) {
-        this.idNguoiDung = idNguoiDung;
     }
 
     public String getMaNguoiDung() {
@@ -55,6 +47,22 @@ public class NguoiDung {
         this.tenNguoiDung = tenNguoiDung;
     }
 
+    public boolean isGioiTinh() {
+        return gioiTinh;
+    }
+
+    public void setGioiTinh(boolean gioiTinh) {
+        this.gioiTinh = gioiTinh;
+    }
+
+    public int getTuoi() {
+        return tuoi;
+    }
+
+    public void setTuoi(int tuoi) {
+        this.tuoi = tuoi;
+    }
+
     public String getSdt() {
         return sdt;
     }
@@ -63,28 +71,28 @@ public class NguoiDung {
         this.sdt = sdt;
     }
 
-    public String getDiaChi() {
-        return diaChi;
+    public String getEmail() {
+        return email;
     }
 
-    public void setDiaChi(String diaChi) {
-        this.diaChi = diaChi;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getNgaySinh() {
-        return ngaySinh;
+    public String getMaCV() {
+        return maCV;
     }
 
-    public void setNgaySinh(String ngaySinh) {
-        this.ngaySinh = ngaySinh;
+    public void setMaCV(String maCV) {
+        this.maCV = maCV;
     }
 
-    public String getGioiTinh() {
-        return gioiTinh;
+    public String getTenDN() {
+        return tenDN;
     }
 
-    public void setGioiTinh(String gioiTinh) {
-        this.gioiTinh = gioiTinh;
+    public void setTenDN(String tenDN) {
+        this.tenDN = tenDN;
     }
 
     public String getMatKhau() {
@@ -95,28 +103,20 @@ public class NguoiDung {
         this.matKhau = matKhau;
     }
 
-    public int getIdChucVu() {
-        return idChucVu;
-    }
-
-    public void setIdChucVu(int idChucVu) {
-        this.idChucVu = idChucVu;
-    }
-
-    public String getTrangThai() {
+    public boolean isTrangThai() {
         return trangThai;
     }
 
-    public void setTrangThai(String trangThai) {
+    public void setTrangThai(boolean trangThai) {
         this.trangThai = trangThai;
     }
 
-    public String getTenChucVu() {
-        return tenChucVu;
+    @Override
+    public String toString() {
+        return "NguoiDung{" + "maNguoiDung=" + maNguoiDung + ", tenNguoiDung=" + tenNguoiDung + ", gioiTinh=" + gioiTinh + ", tuoi=" + tuoi + ", sdt=" + sdt + ", email=" + email + ", maCV=" + maCV + ", tenDN=" + tenDN + ", matKhau=" + matKhau + ", trangThai=" + trangThai + '}';
     }
 
-    public void setTenChucVu(String tenChucVu) {
-        this.tenChucVu = tenChucVu;
+    public void inThongTinNguoiDung() {
+        System.out.println("NguoiDung{" + "maNguoiDung=" + maNguoiDung + ", tenNguoiDung=" + tenNguoiDung + ", gioiTinh=" + gioiTinh + ", tuoi=" + tuoi + ", sdt=" + sdt + ", email=" + email + ", maCV=" + maCV + ", tenDN=" + tenDN + ", matKhau=" + matKhau + ", trangThai=" + trangThai + '}');
     }
-
 }

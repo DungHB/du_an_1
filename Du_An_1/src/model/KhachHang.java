@@ -2,33 +2,13 @@ package model;
 
 public class KhachHang {
 
-    private int idKhachHang;
     private String maKhachHang;
     private String tenKhachHang;
+    private boolean gioiTinh;
     private String sdt;
     private String diaChi;
-    private String gioiTinh;
-    private String ngaySinh;
 
     public KhachHang() {
-    }
-
-    public KhachHang(int idKhachHang, String maKhachHang, String tenKhachHang, String sdt, String diaChi, String gioiTinh, String ngaySinh) {
-        this.idKhachHang = idKhachHang;
-        this.maKhachHang = maKhachHang;
-        this.tenKhachHang = tenKhachHang;
-        this.sdt = sdt;
-        this.diaChi = diaChi;
-        this.gioiTinh = gioiTinh;
-        this.ngaySinh = ngaySinh;
-    }
-
-    public int getIdKhachHang() {
-        return idKhachHang;
-    }
-
-    public void setIdKhachHang(int idKhachHang) {
-        this.idKhachHang = idKhachHang;
     }
 
     public String getMaKhachHang() {
@@ -47,6 +27,14 @@ public class KhachHang {
         this.tenKhachHang = tenKhachHang;
     }
 
+    public boolean getGioiTinh() {
+        return gioiTinh;
+    }
+
+    public void setGioiTinh(boolean gioiTinh) {
+        this.gioiTinh = gioiTinh;
+    }
+
     public String getSdt() {
         return sdt;
     }
@@ -63,20 +51,12 @@ public class KhachHang {
         this.diaChi = diaChi;
     }
 
-    public String getGioiTinh() {
-        return gioiTinh;
-    }
-
-    public void setGioiTinh(String gioiTinh) {
+    public KhachHang(String maKhachHang, String tenKhachHang, boolean gioiTinh, String sdt, String diaChi) {
+        this.maKhachHang = maKhachHang;
+        this.tenKhachHang = tenKhachHang;
         this.gioiTinh = gioiTinh;
-    }
-
-    public String getNgaySinh() {
-        return ngaySinh;
-    }
-
-    public void setNgaySinh(String ngaySinh) {
-        this.ngaySinh = ngaySinh;
+        this.sdt = sdt;
+        this.diaChi = diaChi;
     }
 
 }
